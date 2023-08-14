@@ -1,11 +1,15 @@
 
-const DATA_URL = ("https:japceibal.github.io/emercado-api/cats_products/101.json")
+const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 
 const container = document.getElementById("productos");
 
 function showData(dataArray) {
     for (const item of dataArray) {
-        seriesContainer.innerHTML += `<p> ${item.products_image} <br> ${item.products_name} <br> ${item.products_description} <br> ${item.products.cost} <br> ${item.products.oldCount}<p>`
+       container.innerHTML += `<p> <img src="${item.image}"> 
+       <br> ${item.name} 
+       <br> ${item.description} 
+       <br> ${item.cost} 
+       <br> ${item.soldCount}<p>`;
     }
 }
 fetch(DATA_URL)
