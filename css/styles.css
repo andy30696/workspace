@@ -181,10 +181,28 @@ main {
 
 a.custom-card,
 a.custom-card:hover {
-  color: inherit;
+  color: red;
   text-decoration: inherit;
 }
 
 .checked {
   color: orange;
+}
+.card-img-top{
+  margin-top: 5%;  
+}
+
+
+.card {
+  display:flex ;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 3%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+}
+
+.card:hover{
+  border-color: blue;
+  box-shadow: #0087F7;
 }
