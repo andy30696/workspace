@@ -100,8 +100,13 @@ border-radius: 8px;
     border-radius: 8px;
     border: none;
     overflow: auto;
+    cursor: pointer;
+    background-color:transparent;
 }
 
 #ojo {
     width: 25px;
+}
+.text-muted{
+    margin-top: 40%;
 }
