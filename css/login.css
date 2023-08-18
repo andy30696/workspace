@@ -11,7 +11,10 @@ html,body{
 
 .container{
     height: 100%;
-    align-content: center;
+    align-items: first baseline;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card{
@@ -19,8 +22,7 @@ html,body{
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    margin-right: 400px; 
+    background-color: rgba(0, 0, 0, 0.5) !important; 
     border-radius: 14px;
     box-shadow: 3px 3px 3px 3px rgba(50, 50, 50, 0.5);
 }
@@ -100,8 +102,13 @@ border-radius: 8px;
     border-radius: 8px;
     border: none;
     overflow: auto;
+    cursor: pointer;
+    background-color:transparent;
 }
 
 #ojo {
     width: 25px;
+}
+.text-muted{
+    margin-top: 40%;
 }
