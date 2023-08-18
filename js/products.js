@@ -1,4 +1,4 @@
-const div= document.getElementById("productos");
+const div = document.getElementById("productos");
 
 const storedValue = localStorage.getItem("catID");
 const DATA_URL = `https://japceibal.github.io/emercado-api/cats_products/${storedValue}.json`;
