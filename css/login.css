@@ -1,82 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
-html,body{
-    background-image: url(../img/loginfondo.jpg);
-    background-position: right;
-    background-size: 40%;
+body {
+    background-image: url("https://img.freepik.com/foto-gratis/elementos-venta-eventos-cyber-monday_23-2148675059.jpg?w=1800&t=st=1692365846~exp=1692366446~hmac=a67ad441a708477f50bf157cc7bbecd96689262a76b7947f5be6615d01c4102a");
+    background-attachment: fixed;
+    background-position: bottom 2px right 1px;
     background-repeat: no-repeat;
-    height: 100%;
+    background-size: cover;
     font-family: 'Numans', sans-serif;
+
 }
 
-.container{
-    height: 100%;
-    align-items: first baseline;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.containerFooter {
+    position: fixed;
+    bottom: 0;
+    left: 5%;
 }
 
-.card{
+.card {
+    position: fixed;
     height: 370px;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-top: 100px;
     width: 400px;
-    background-color: rgba(0, 0, 0, 0.5) !important; 
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 14px;
     box-shadow: 3px 3px 3px 3px rgba(50, 50, 50, 0.5);
 }
 
-
-/* .social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
+.card-header h3 {
+    color: white;
+    margin-top: 4%;
 }
 
-.social_icon span:hover{
-color: white;
-cursor: pointer;
-}
- */
-
-
-.card-header h3{
-color: white;
-margin-top: 4%;
-}
-
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
-}
-
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
 
 }
 
-.remember{
-color: white;
+.remember {
+    color: white;
 }
 
-.input-group .form-control{
-margin-bottom: 5%;
-border-style: none;
-border-radius: 8px;
+/* -------------------------------------*/
+.input-group .form-control {
+    margin-bottom: 5%;
+    border-style: none;
+    border-radius: 8px;
 }
 
-.remember input
-{
+.remember input {
     width: 20px;
     height: 20px;
     margin-left: 15px;
     margin-right: 5px;
 }
 
-.login_btn{
+.login_btn {
     margin-top: 5%;
     color: white;
     background-color: #53C0FB;
@@ -85,30 +64,28 @@ border-radius: 8px;
     font-weight: bold;
 }
 
-.login_btn:hover{
+.login_btn:hover {
     background-color: white;
 }
 
-.links{
+.links {
     color: white;
 }
 
-.links a{
+.links a {
     margin-left: 4px;
 }
-#togglePassword{
+
+#togglePassword {
     width: 40px;
-    height: 40px;   
+    height: 40px;
     border-radius: 8px;
     border: none;
     overflow: auto;
     cursor: pointer;
-    background-color:transparent;
+    background-color: transparent;
 }
 
 #ojo {
     width: 25px;
-}
-.text-muted{
-    margin-top: 40%;
 }
