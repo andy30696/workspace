@@ -1,7 +1,10 @@
 const passwordField = document.getElementById("passwordField"); // Obtiene un elemento del DOM con el ID passwordField.
 const togglePassword = document.getElementById("togglePassword"); // Obtiene un elemento del DOM con el ID togglePassword.
 
+// const showPasswordCheckbox = document.getElementById('showPassword');
+
 // Alternar la Visibilidad de la Contraseña.
+
 togglePassword.addEventListener("click", function () {
     if (passwordField.type === "password") {
         passwordField.type = "text";
@@ -31,3 +34,23 @@ function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
+
+/* Agregar en la esquina derecha el nombre del usuario ingresada en la pantalla de inicio de sesión,
+ haciendo uso del LocalStorage */
+
+
+//Almacenamos el email en local storage
+const btn = document.getElementById('login');
+const inputText = document.getElementById('email');
+
+btn.addEventListener("click", () => {
+    let inputValue = inputText.value;
+    localStorage.setItem('inputText', inputValue);
+
+    console.log(localStorage.getItem("inputText"));
+
+});
+
+
+
+
