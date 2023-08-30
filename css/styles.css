@@ -206,3 +206,35 @@ a.custom-card:hover {
   border-color: blue;
   box-shadow: #0087F7;
 }
+
+.row {
+  justify-content: center;
+  margin-top: 2%;
+}
+
+#buscar{
+  padding: 8px;
+  max-width: 100%;
+  border: 1px solid #2f2f2f;
+  border-radius: 8px;
+  margin: 8px
+  
+}
+
+/* mensajes para los botones */
+#mensajeEmergente {
+  position: absolute; /* Asegura que se superponga a otros elementos */
+  background-color: #fff; 
+  border: 1px solid #ccc; 
+  font-size: 10pt;
+  border-radius: 8px;
+  padding: 10px; 
+  display: inline-block; /* Alinea horizontalmente */
+  left: 200px; 
+  top: 50px; 
+}
+
+.oculto {
+  display: none;
+}
+
