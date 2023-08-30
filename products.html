@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Jd9thUu9L7nuBzynIEa58s3I3LllgFaP2pBq5F2cGxXu" crossorigin="anonymous">
 </head>
 
 <body>
@@ -36,11 +37,38 @@
       </div>
     </div>
   </nav>
+<!-- ...................... -->
+  <div class="row">
+    <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+      <div class="row container p-0 m-0">
+        <div class="col">
+          <p class="font-weight-normal text-end my-2"> Precio </p>
+        </div>
+        <div class="col">
+          <input class="form-control" type="number" placeholder="Precio mínimo" id="min">
+        </div>
+        <div class="col">
+          <input class="form-control" type="number" placeholder="Precio máximo" id="max">
+        </div>
+        <div class="col-3 p-0">
+          <div class="btn-group" role="group">
+            <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+            <button class="btn btn-light btn-block" id="rangeFilterAsc"><i class="fas fa-sort-amount-up"></i> FiltrarAsc</button>
+          
+            <button class="btn btn-light btn-block" id="rangeFilterDesc">FiltrarDesc</button>
+          
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<!-- ...................................... -->
+
+  
   <main class="pb-5 container">
     <div id="productos" class="row">
-
-
-
     </div>
   </main>
   <footer class="text-muted">
