@@ -109,51 +109,47 @@ function filterProductEvent() {
   });
 }
 
-
-
-
-
 //-------------
-const mensajeEmergente = document.getElementById('mensajeEmergente');
-const buscar = document.getElementById('buscar');
+const mensajeEmergente = document.getElementById("mensajeEmergente");
+const buscar = document.getElementById("buscar");
 
-filterAsc.addEventListener('mouseover', () => {
-    mostrarMensaje('Filtrar ascendentemente');
+filterAsc.addEventListener("mouseover", () => {
+  mostrarMensaje("Filtrar ascendentemente");
 });
 
-filterAsc.addEventListener('mouseout', () => {
-    ocultarMensaje();
+filterAsc.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
-filterDesc.addEventListener('mouseover', () => {
-    mostrarMensaje('Filtrar descendentemente');
+filterDesc.addEventListener("mouseover", () => {
+  mostrarMensaje("Filtrar descendentemente");
 });
 
-filterDesc.addEventListener('mouseout', () => {
-    ocultarMensaje();
+filterDesc.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
-filterRelevance.addEventListener('mouseover', () => {
-    mostrarMensaje('Filtrar por relevancia descendiente');
+filterRelevance.addEventListener("mouseover", () => {
+  mostrarMensaje("Filtrar por relevancia descendiente");
 });
 
-filterRelevance.addEventListener('mouseout', () => {
-    ocultarMensaje();
+filterRelevance.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
-buscar.addEventListener('mouseover', () => {
-    mostrarMensaje('Buscar por título o descripción');
+buscar.addEventListener("mouseover", () => {
+  mostrarMensaje("Buscar por título o descripción");
 });
 
-buscar.addEventListener('mouseout', () => {
-    ocultarMensaje();
+buscar.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
 function mostrarMensaje(texto) {
-    mensajeEmergente.innerText = texto;
-    mensajeEmergente.style.display = 'block';
+  mensajeEmergente.innerText = texto;
+  mensajeEmergente.style.display = "block";
 }
 
 function ocultarMensaje() {
-    mensajeEmergente.style.display = 'none';
+  mensajeEmergente.style.display = "none";
 }
