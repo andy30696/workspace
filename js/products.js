@@ -11,10 +11,6 @@ const filterRelevance = document.getElementById("filterRelevance");
 
 let productsDataGlobal = [];
 
-// filterBtn.addEventListener("click", () => {
-//     filter(productsDataGlobal);
-//   });
-
 document.addEventListener("DOMContentLoaded", () => {
   fetch(DATA_URL)
     .then((response) => response.json())
@@ -30,21 +26,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function setProductID(id) {
+  localStorage.setItem("setProduct", id);
+  window.location = "product-info.html";
+}
+
 function showData(dataArray) {
   container.innerHTML = "";
   for (const item of dataArray) {
     container.innerHTML += `
-    <div class="row card" style="width: 45%">
-     <img class="card-img-top" width="200" src="${item.image}"alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">${item.name}</h5>
-        <p class="card-text">${item.description}
-        <br> Precio USD: ${item.cost} 
-        <br> Vendidos: ${item.soldCount}</p>
-        <hr>
-        <a href="#" class="btn btn-primary">Comprar</a>
+    <div class="col-12 col-xl-4 col-md-4 col-sm-6">
+      <div class="card">
+            <img class="card-img-top" width="200" src="${item.image}"alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text">${item.description}
+            <br> Precio USD: ${item.cost} 
+            <br> Vendidos: ${item.soldCount}</p>
+            <hr>
+            <a href="#" class="btn btn-primary"> Comprar </a>
+            <button class="btn btn-primary masInfo" onclick="setProductID(${item.id})"> Mas Info </button>        
+        </div>
       </div>
-    </div>`;
+    </div>
+    `; 
   }
 }
 
@@ -109,51 +114,47 @@ function filterProductEvent() {
   });
 }
 
-
-
-
-
 //-------------
-const mensajeEmergente = document.getElementById('mensajeEmergente');
-const buscar = document.getElementById('buscar');
+const mensajeEmergente = document.getElementById("mensajeEmergente");
+const buscar = document.getElementById("buscar");
 
-filterAsc.addEventListener('mouseover', () => {
-    mostrarMensaje('Filtrar ascendentemente');
+filterAsc.addEventListener("mouseover", () => {
+  mostrarMensaje("Filtrar ascendentemente");
 });
 
-filterAsc.addEventListener('mouseout', () => {
-    ocultarMensaje();
+filterAsc.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
-filterDesc.addEventListener('mouseover', () => {
-    mostrarMensaje('Filtrar descendentemente');
+filterDesc.addEventListener("mouseover", () => {
+  mostrarMensaje("Filtrar descendentemente");
 });
 
-filterDesc.addEventListener('mouseout', () => {
-    ocultarMensaje();
+filterDesc.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
-filterRelevance.addEventListener('mouseover', () => {
-    mostrarMensaje('Filtrar por relevancia descendiente');
+filterRelevance.addEventListener("mouseover", () => {
+  mostrarMensaje("Filtrar por relevancia descendiente");
 });
 
-filterRelevance.addEventListener('mouseout', () => {
-    ocultarMensaje();
+filterRelevance.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
-buscar.addEventListener('mouseover', () => {
-    mostrarMensaje('Buscar por título o descripción');
+buscar.addEventListener("mouseover", () => {
+  mostrarMensaje("Buscar por título o descripción");
 });
 
-buscar.addEventListener('mouseout', () => {
-    ocultarMensaje();
+buscar.addEventListener("mouseout", () => {
+  ocultarMensaje();
 });
 
 function mostrarMensaje(texto) {
-    mensajeEmergente.innerText = texto;
-    mensajeEmergente.style.display = 'block';
+  mensajeEmergente.innerText = texto;
+  mensajeEmergente.style.display = "block";
 }
 
 function ocultarMensaje() {
-    mensajeEmergente.style.display = 'none';
+  mensajeEmergente.style.display = "none";
 }
