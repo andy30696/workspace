@@ -32,45 +32,51 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="login.html" id="loginIndex">Login</a>
+          </li>
+          <li class="nav-item">
           </li>
         </ul>
       </div>
     </div>
   </nav>
-<!-- ......................-->
-  <div class="row">
-    <div class="">
-      <div class="row container">
-        <div class="col">
-          <p class="font-weight-normal text-end my-2"> Precio </p>
-        </div>
-        <div class="col">
-          <input class="form-control" type="number" placeholder="$ mínimo" id="min">
-        </div> 
-        <div class="col"> 
-          <input class="form-control" type="number" placeholder="$ máximo" id="max">
-        </div>
-        <div class="col-3 p-0">        
-          <div class="btn-group" role="group">
-            <button class="btn btn-light btn-block" id="filtrar">Filtrar</button>
-            <button class="btn btn-light btn-block" id="rangeFilterAsc"><i class="fas fa-sort-amount-up"></i></button>
-            <button class="btn btn-light btn-block" id="rangeFilterDesc"><i class="fas fa-sort-amount-down"></i></button>
-            <button class="btn btn-light btn-block" id="filterRelevance"><i class="fas fa-arrow-down"></i></button>
-            <input class="" id="buscar" type="text" class=""
-            placeholder="🔍︎ Buscar" aria-label="Buscar"
-            aria-describedby="search-addon">
-            
-            <div id="mensajeEmergente" class="oculto"></div>
+<!-- ...................... -->
+
+<!-- ...................................... -->
+
+
+<main class="pb-5 container">
+    <div class="row text-center">
+      <div class="col-12 text-center">
+        <input class="" id="buscar" type="text" class=""
+        placeholder="🔍︎ Buscar" aria-label="Buscar"
+        aria-describedby="search-addon">
+      </div>
+      <div class="col-12 ">
+        <div class="row container">
+          <div class="col">
+            <p class="font-weight-normal text-end my-2"> Precio </p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="$ mínimo" id="min">
           </div> 
+          <div class="col"> 
+            <input class="form-control" type="number" placeholder="$ máximo" id="max">
+          </div>
+          <div class="col-6 text-sm-center">   
+            <div class="btn-group" role="group">
+              <button class="btn btn-light btn-block" id="filtrar">Filtrar</button>
+              <button class="btn btn-light btn-block" id="rangeFilterAsc"><i class="fas fa-sort-amount-up"></i></button>
+              <button class="btn btn-light btn-block" id="rangeFilterDesc"><i class="fas fa-sort-amount-down"></i></button>
+              <button class="btn btn-light btn-block" id="filterRelevance"><i class="fas fa-arrow-down"></i></button>
+            </div> 
+            <!-- <div id="mensajeEmergente" class="oculto"></div> -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <!-- ...................................... -->
-  
-  
-  <main class="pb-5 container">
+
+    
     <div id="productos" class="row">
     </div>
   </main>
