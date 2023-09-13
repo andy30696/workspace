@@ -49,24 +49,28 @@
   <footer class="text-muted">
   
     <!-- seccion comentarios-------------- -->
-  <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center" id="coso">
     <div class="col-md-12 col-lg-6">
       <div class="card shadow-0 border" style="background-color: #f0f2f5;">
         <div  class="card-body p-8">
           <div class="form-outline mb-4">
             <div id="comment-form">
-              <input type="text" id="addComment" class="form-control" placeholder="Escribe tu comentario..." />
-              <label for="stars">Tu puntuación:</label> 
+              <input type="text" id="addComment" class="form-control" placeholder="Escribe tu comentario..." required /></div>
+              <label for="stars" id="puntuacion"><i class="fas fa-star checked"></i> Tu puntuación:</label>
               <select name="star" id="stars">
-                <option class="fa fa-star checked" value="1">1 Horrible</option>
-                <option class="fa fa-star checked" value="2">2 Malo</option>
-                <option class="fa fa-star checked" value="3">3 Bueno</option>
-                <option class="fa fa-star checked" value="4">4 Muy bueno</option>
-                <option class="fa fa-star checked" value="5">5 Excelente</option>
-              </select>
+                <option class="fa fa-star checked" value="1"> Horrible</option>
+                <option class="fa fa-star checked" value="2"> Malo</option>
+                <option class="fa fa-star checked" value="3"> Bueno</option>
+                <option class="fa fa-star checked" value="4"> Muy bueno</option>
+                <option class="fa fa-star checked" value="5"> Excelente</option>
+              </select><br>
               <button id="submit" class="btn btn-primary" type="submit">Enviar</button>
-            </div>
+            
             <div id= "comentarios">
+
+
+
+            </div>
             </div>
           </div>
         </div>
@@ -74,13 +78,13 @@
     </div>
   </div>
 
-    <div class="container">
+    <div class="container" >
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
-  </footer>
+    </footer>
 
   <div id="spinner-wrapper">
     <div class="lds-ring">
@@ -93,6 +97,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
 </body>
 
 </html>

@@ -58,11 +58,13 @@ function showProduct(dataObj) {
           </div>
                     
           <div class="row">
-          <div>
-          <img src="${img1}" height = "195" alt="Imagenes representativas de ${name}">
-          <img src="${img2}" height = "195" alt="Imagenes representativas de ${name}">
-          <img src="${img3}" height = "195" alt="Imagenes representativas de ${name}">
-          <img src="${img4}" height = "195" alt="Imagenes representativas de ${name}">
+          <div class="slider">
+          <swiper-container class="mySwiper" navigation="true">
+          <swiper-slide><img src="${img1}" height = "195" alt="Imagenes representativas de ${name}"></swiper-slide>
+          <swiper-slide><img src="${img2}" height = "195" alt="Imagenes representativas de ${name}"></swiper-slide>
+          <swiper-slide><img src="${img3}" height = "195" alt="Imagenes representativas de ${name}"></swiper-slide>
+          <swiper-slide><img src="${img4}" height = "195" alt="Imagenes representativas de ${name}"></swiper-slide>
+          </swiper-container>
           </div>
          </div>
           
@@ -234,7 +236,9 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(newComment);
   
     agregarComentario(newComment);
-    // commentForm.reset();
+    document.getElementById("addComment").value = "";
+    document.getElementById("stars").value = 3;
+    
   });
 
 });
@@ -249,7 +253,7 @@ function agregarComentario(newComment) {
       <p>${newComment.description}</p>
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-row align-items-center">
-          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${newComment.dateTime} - ${newComment.score} estrellas</p>
+          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${newComment.dateTime} - ${newComment.score}</p>
         </div>
         <div class="d-flex flex-row align-items-center">
           ${getStarIcons(newComment.score)}
@@ -260,6 +264,7 @@ function agregarComentario(newComment) {
   `;
   
   document.getElementById("comentarios").innerHTML = data_comentarios;
+  
 }
 
 function getStarIcons(score) {
@@ -273,28 +278,3 @@ function getStarIcons(score) {
 
 
 
-// function addComment(event) {
-//   event.preventDefault();
-
-//   const selectedStar = document.querySelector('.star-rating');
-//   const score = parseInt(selectedStar.value);
-//   const username = document.getElementById('user-text').value;
-//   const description = document.getElementById('comment-text').value;
-//   const dateTime = new Date().toLocaleString();
-//   const newComment = {
-//       usuario: username,
-//       fecha: dateTime,
-//       contenido: description,
-//       rating: score
-//   };
-
-//   let comments = JSON.parse(localStorage.getItem('comments')) || [];
-
-//   comments.push(newComment);
-
-//   localStorage.setItem('comments', JSON.stringify(comments));
-
-//   displayComment(newComment);
-
-//   document.getElementById('comment-text').value = '';
-// }
