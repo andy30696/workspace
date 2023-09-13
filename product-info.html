@@ -54,12 +54,19 @@
       <div class="card shadow-0 border" style="background-color: #f0f2f5;">
         <div  class="card-body p-8">
           <div class="form-outline mb-4">
-            <form>
-              <input type="text" id="addANote" class="form-control" placeholder="Escribe tu comentario..." />
-              <button type="submit">Enviar</button>
-            </form>
+            <div id="comment-form">
+              <input type="text" id="addComment" class="form-control" placeholder="Escribe tu comentario..." />
+              <label for="stars">Tu puntuación:</label> 
+              <select name="star" id="stars">
+                <option class="fa fa-star checked" value="1">1 Horrible</option>
+                <option class="fa fa-star checked" value="2">2 Malo</option>
+                <option class="fa fa-star checked" value="3">3 Bueno</option>
+                <option class="fa fa-star checked" value="4">4 Muy bueno</option>
+                <option class="fa fa-star checked" value="5">5 Excelente</option>
+              </select>
+              <button id="submit" class="btn btn-primary" type="submit">Enviar</button>
+            </div>
             <div id= "comentarios">
-          
             </div>
           </div>
         </div>

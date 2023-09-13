@@ -82,81 +82,130 @@ fetch(URL_COMENTARIOS)
 
 
 function print_comentarios(data) {
-  
-  let data_comentarios = ""
+
+  let data_comentarios = "";
 
   for (let i = 0; i < data.length; i++) {
     let estrellas = data[i].score;
     console.log("estrellas", estrellas)
+
     if (estrellas == 0) {
       data_comentarios += `
-      <div class="list-group-item"></div>
-      <p><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} 
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star"></span>
-      <span class="fa fa-star"></span>
-      <span class="fa fa-star"></span>
-      <span class="fa fa-star"></span></p>
-      <p>${data[i].description}</p>
-    </div>`
+      <div class="card mb-4">
+          <div class="card-body">
+            <p>${data[i].description}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <p><span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>`
     } else if (estrellas == 1) {
       data_comentarios += `
-        <div class="list-group-item"></div>
-          <p><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} 
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span></p>
-          <p>${data[i].description}</p>
-        </div>`
+      <div class="card mb-4">
+      <div class="card-body">
+        <p>${data[i].description}</p>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+            <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
+          </div>
+          <div class="d-flex flex-row align-items-center">
+            <p><span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>`
     } else if (estrellas == 2) {
       data_comentarios += `
-      <div class="list-group-item">
-        <p><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} 
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span></p>
-        <p>${data[i].description}</p>
-      </div>`
+      <div class="card mb-4">
+          <div class="card-body">
+            <p>${data[i].description}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <p><span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>`
 
     } else if (estrellas == 3) {
       data_comentarios += `
-      <div class="list-group-item">
-        <p><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} 
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span></p>
-        <p>${data[i].description}</p>
-      </div>`
+      <div class="card mb-4">
+          <div class="card-body">
+            <p>${data[i].description}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <p><span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>`
 
     } else if (estrellas == 4) {
       data_comentarios += `
-      <div class="list-group-item"></div>
-        <p><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} 
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span></p>
-        <p>${data[i].description}</p>
-      </div>`
+      <div class="card mb-4">
+          <div class="card-body">
+            <p>${data[i].description}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <p><span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>`
 
     } else if (estrellas == 5) {
       data_comentarios += `
-      <div class="list-group-item">
-        <p><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} 
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span></p>
-        <pp>${data[i].description}</pp>
-      </div>`
+      <div class="card mb-4">
+          <div class="card-body">
+            <p>${data[i].description}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <p><span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>`
     }
 
   }
@@ -164,10 +213,88 @@ function print_comentarios(data) {
 
 }
 
+////////////////////////////
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnComment = document.getElementById("submit");
+  // const commentForm = document.getElementById("comment-form");
+  btnComment.addEventListener("click", () => {
+    
+    const inputEstrellas = document.getElementById("stars").value;
+    const inputComment = document.getElementById("addComment").value;
+    console.log("hola");
+    
+    const newComment = {
+      user: "Usuario",
+      description: inputComment,
+      dateTime: new Date().toLocaleString(),
+      score: inputEstrellas
+    };
+
+    console.log(newComment);
+  
+    agregarComentario(newComment);
+    // commentForm.reset();
+  });
+
+});
+
+function agregarComentario(newComment) {
+  console.log("agregar comentario");
+  
+  let data_comentarios = document.getElementById("comentarios").innerHTML;
+  data_comentarios += `
+  <div class="card mb-4">
+    <div class="card-body">
+      <p>${newComment.description}</p>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row align-items-center">
+          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${newComment.dateTime} - ${newComment.score} estrellas</p>
+        </div>
+        <div class="d-flex flex-row align-items-center">
+          ${getStarIcons(newComment.score)}
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+  
+  document.getElementById("comentarios").innerHTML = data_comentarios;
+}
+
+function getStarIcons(score) {
+  const starIcons = []; 
+  for (let i = 1; i <= 5; i++) {
+    const starClass = i <= score ? "fa fa-star checked" : "fa fa-star";
+    starIcons.push(`<span class="${starClass}"></span>`);
+  }
+  return starIcons.join("");
+}
 
 
 
+// function addComment(event) {
+//   event.preventDefault();
 
+//   const selectedStar = document.querySelector('.star-rating');
+//   const score = parseInt(selectedStar.value);
+//   const username = document.getElementById('user-text').value;
+//   const description = document.getElementById('comment-text').value;
+//   const dateTime = new Date().toLocaleString();
+//   const newComment = {
+//       usuario: username,
+//       fecha: dateTime,
+//       contenido: description,
+//       rating: score
+//   };
 
+//   let comments = JSON.parse(localStorage.getItem('comments')) || [];
 
+//   comments.push(newComment);
 
+//   localStorage.setItem('comments', JSON.stringify(comments));
+
+//   displayComment(newComment);
+
+//   document.getElementById('comment-text').value = '';
+// }
