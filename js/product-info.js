@@ -1,4 +1,5 @@
 const storedValue = localStorage.getItem("setProduct");
+const storedValueUsuario = localStorage.getItem("usuario");
 const URL_PRODUCT = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
 const URL_COMENTARIOS = `https://japceibal.github.io/emercado-api/products_comments/${storedValue}.json`;
 const productDetailsElement = document.getElementById('product-details');
@@ -91,26 +92,7 @@ function print_comentarios(data) {
     let estrellas = data[i].score;
     console.log("estrellas", estrellas)
 
-    if (estrellas == 0) {
-      data_comentarios += `
-      <div class="card mb-4">
-          <div class="card-body">
-            <p>${data[i].description}</p>
-            <div class="d-flex justify-content-between">
-              <div class="d-flex flex-row align-items-center">
-                <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
-              </div>
-              <div class="d-flex flex-row align-items-center">
-                <p><span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span></p>
-              </div>
-            </div>
-          </div>
-        </div>`
-    } else if (estrellas == 1) {
+    if (estrellas == 1) {
       data_comentarios += `
       <div class="card mb-4">
       <div class="card-body">
@@ -219,33 +201,33 @@ function print_comentarios(data) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnComment = document.getElementById("submit");
-  // const commentForm = document.getElementById("comment-form");
   btnComment.addEventListener("click", () => {
-    
+
     const inputEstrellas = document.getElementById("stars").value;
     const inputComment = document.getElementById("addComment").value;
     console.log("hola");
-    
+
+
     const newComment = {
-      user: "Usuario",
+      user: storedValueUsuario,
       description: inputComment,
       dateTime: new Date().toLocaleString(),
       score: inputEstrellas
     };
 
     console.log(newComment);
-  
+
     agregarComentario(newComment);
     document.getElementById("addComment").value = "";
     document.getElementById("stars").value = 3;
-    
+
   });
 
 });
 
 function agregarComentario(newComment) {
   console.log("agregar comentario");
-  
+
   let data_comentarios = document.getElementById("comentarios").innerHTML;
   data_comentarios += `
   <div class="card mb-4">
@@ -262,13 +244,13 @@ function agregarComentario(newComment) {
     </div>
   </div>
   `;
-  
+
   document.getElementById("comentarios").innerHTML = data_comentarios;
-  
+
 }
 
 function getStarIcons(score) {
-  const starIcons = []; 
+  const starIcons = [];
   for (let i = 1; i <= 5; i++) {
     const starClass = i <= score ? "fa fa-star checked" : "fa fa-star";
     starIcons.push(`<span class="${starClass}"></span>`);
