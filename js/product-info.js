@@ -1,5 +1,5 @@
 const storedValue = localStorage.getItem("setProduct");
-const storedValueUsuario = localStorage.getItem("usuario");
+const storedValueUsuario = localStorage.getItem("inputText");
 const URL_PRODUCT = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
 const URL_COMENTARIOS = `https://japceibal.github.io/emercado-api/products_comments/${storedValue}.json`;
 const productDetailsElement = document.getElementById('product-details');
@@ -86,14 +86,14 @@ fetch(URL_COMENTARIOS)
 
 function print_comentarios(data) {
 
-  let data_comentarios = "";
+  let data_comentarios = ""; // se crea un contenedor vacio para almacenar los datos de los comentarios.
 
-  for (let i = 0; i < data.length; i++) {
-    let estrellas = data[i].score;
+  for (let i = 0; i < data.length; i++) { // Se utiliza un bucle for para recorrer cada elemento en el array data que contiene los datos de los comentarios. 
+    let estrellas = data[i].score; // Se obtiene la calificación del comentario actual y se almacena en la variable estrellas.
     console.log("estrellas", estrellas)
 
-    if (estrellas == 1) {
-      data_comentarios += `
+    if (estrellas == 1) { // se agraga una tarjeta al contenedor con los datos de la descripcion, usuario, hora y la calificacion.
+      data_comentarios += ` 
       <div class="card mb-4">
       <div class="card-body">
         <p>${data[i].description}</p>
