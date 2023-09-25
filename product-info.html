@@ -6,11 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
+
+  <!---->
+
 </head>
 
 <body>
@@ -31,12 +36,27 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+          <!--
           <li class="nav-item">
             <a class="nav-link" href="login.html" id="loginIndex">Login</a>
           </li>
-          <li class="nav-item">
-          </li>
-        </ul>
+        </ul>-->
+          <!-- boost de boton-->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="loginIndex" data-bs-toggle="dropdown"
+              aria-expanded="false" href="login.html">
+              Login
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item active" href="cart.html">Mi Carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="index.html">Cerrar Sesión</a></li>
+            </ul>
+          </div>
+          <!-- boost de boton-->
       </div>
     </div>
   </nav>
@@ -47,15 +67,17 @@
     </div>
   </main>
   <footer class="text-muted">
-  
+
     <!-- seccion comentarios-------------- -->
-  <div class="row d-flex justify-content-center" id="coso">
-    <div class="col-md-12 col-lg-6">
-      <div class="card shadow-0 border" style="background-color: #f0f2f5;">
-        <div  class="card-body p-8">
-          <div class="form-outline mb-4">
-            <div id="comment-form">
-              <input type="text" id="addComment" class="form-control" placeholder="Escribe tu comentario..." required /></div>
+    <div class="row d-flex justify-content-center" id="coso">
+      <div class="col-md-12 col-lg-6">
+        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+          <div class="card-body p-8">
+            <div class="form-outline mb-4">
+              <div id="comment-form">
+                <input type="text" id="addComment" class="form-control" placeholder="Escribe tu comentario..."
+                  required />
+              </div>
               <label for="stars" id="puntuacion"><i class="fas fa-star checked"></i> Tu puntuación:</label>
               <select name="star" id="stars">
                 <option class="fa fa-star checked" value="1"> Horrible</option>
@@ -65,26 +87,44 @@
                 <option class="fa fa-star checked" value="5"> Excelente</option>
               </select><br>
               <button id="submit" class="btn btn-primary" type="submit">Enviar</button>
-            
-            <div id= "comentarios">
 
-
-
-            </div>
+              <div id="comentarios">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    </div>
 
-    <div class="container" >
+    <!-- Productos relacionados-------------- -->
+    <div>
+      <h2 class="container" id="product-related">Productos Relacionados</h2>
+      <div id="relacionados" class="row">
+      </div>
+
+    </div>
+
+    <!-- Dark mode -->
+    <div>
+      <button id="darkMode">
+        <i class="fas fa-moon"> </i>
+      </button>
+    </div>
+
+
+
+
+
+
+    <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
-    </footer>
+  </footer>
 
   <div id="spinner-wrapper">
     <div class="lds-ring">
@@ -98,6 +138,9 @@
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+  <script src="js/index.js"></script>
+
+
 </body>
 
 </html>

@@ -3,7 +3,7 @@ const storedValueUsuario = localStorage.getItem("inputText");
 const URL_PRODUCT = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
 const URL_COMENTARIOS = `https://japceibal.github.io/emercado-api/products_comments/${storedValue}.json`;
 const productDetailsElement = document.getElementById('product-details');
-
+const relacionados = document.getElementById("relacionados");
 
 fetch(URL_PRODUCT)
   .then(response => response.json()
@@ -11,6 +11,7 @@ fetch(URL_PRODUCT)
   .then(data => {
     console.log(data);
     showProduct(data);
+    showRelacionados(data);
   })
   .catch(error => console.error('Error al obtener información del producto:', error));
 
@@ -67,8 +68,7 @@ function showProduct(dataObj) {
           <swiper-slide><img src="${img4}" height = "195" alt="Imagenes representativas de ${name}"></swiper-slide>
           </swiper-container>
           </div>
-         </div>
-          
+         </div>     
     </div>
     `;
   productDetailsElement.innerHTML = template;
@@ -244,9 +244,7 @@ function agregarComentario(newComment) {
     </div>
   </div>
   `;
-
   document.getElementById("comentarios").innerHTML = data_comentarios;
-
 }
 
 function getStarIcons(score) {
@@ -258,5 +256,48 @@ function getStarIcons(score) {
   return starIcons.join("");
 }
 
+// relacionados 
+
+function showRelacionados(data) {
+  relacionados.innerHTML = "";
+  for (let i = 0; i < data.relatedProducts.length; i++) {
+    relacionados.innerHTML += `
+    <div class="col-12 col-xl-4 col-md-4 col-sm-6">
+      <div class="card">
+            <img class="card-img-top" width="200" src="${data.relatedProducts[i].image}"alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">${data.relatedProducts[i].name}</h5>
+            <button class="btn btn-primary masInfo" onclick="setProductID(${data.id})"> Mas Info </button>       
+        </div>
+      </div>
+    </div>
+    `;
+  }
+}
+
+function setProductID(id) {
+  localStorage.setItem("setProduct", id);
+  window.location = "product-info.html";
+}
+
+
+//ModoNocturno
+
+const dark = "background: black; color: white;";
+const light = "background: white; color: black;";
+
+let currentMode = "light";
+
+function changeMode(mode) {
+  currentMode = mode;
+  document.body.style.cssText = mode === "light" ? light : dark;
+}
+
+const modeButton = document.getElementById("darkMode");
+modeButton.addEventListener("click", () => {
+  changeMode(currentMode === "light" ? "dark" : "light");
+});
+
+changeMode(currentMode);
 
 

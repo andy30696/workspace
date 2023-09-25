@@ -61,7 +61,7 @@ nav a {
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   text-shadow: 1px 1px 2px grey;
-  
+
 }
 
 .jumbotron .lead {
@@ -191,13 +191,14 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
-.card-img-top{
-  margin-top: 5%;  
+
+.card-img-top {
+  margin-top: 5%;
 }
 
 
 .card {
-  display:flex ;
+  display: flex;
   margin-top: 2%;
   margin-bottom: 2%;
   margin-right: 3%;
@@ -205,7 +206,7 @@ a.custom-card:hover {
 
 }
 
-.card:hover{
+.card:hover {
   border-color: blue;
   box-shadow: #0087F7;
 }
@@ -215,42 +216,55 @@ a.custom-card:hover {
   margin-top: 2%;
 }
 
-#buscar{
+#buscar {
   padding: 8px;
   max-width: 100%;
   border: 1px solid #2f2f2f;
   border-radius: 8px;
   margin: 8px
-  
 }
 
 /* mensajes para los botones */
 #mensajeEmergente {
-  position: absolute; /* Asegura que se superponga a otros elementos */
-  background-color: #fff; 
-  border: 1px solid #ccc; 
+  position: absolute;
+  /* Asegura que se superponga a otros elementos */
+  background-color: #fff;
+  border: 1px solid #ccc;
   font-size: 10pt;
   border-radius: 8px;
-  padding: 10px; 
-  display: inline-block; /* Alinea horizontalmente */
-  left: 200px; 
-  top: 50px; 
+  padding: 10px;
+  display: inline-block;
+  /* Alinea horizontalmente */
+  left: 200px;
+  top: 50px;
 }
 
 .oculto {
   display: none;
 }
 
-#stars{
-  margin: 2% ;
+#stars {
+  margin: 2%;
 }
 
-#puntuacion{
+#puntuacion {
   margin-right: 2%;
 }
 
-#coso{
-  margin-bottom: 35%;
+#coso {
+  margin-bottom: 5%;
+}
+
+#relacionados {
+  margin-bottom: 20%;
+}
+
+#product-related {
+  text-align: center;
+}
+
+.card-title {
+  color: #2f2f2f;
 }
 
 
@@ -262,24 +276,25 @@ a.custom-card:hover {
   position: relative;
 }
 
-.slider img{
-float: left;
+.slider img {
+  float: left;
 }
 
-.slider .prev, .slider .next {
+.slider .prev,
+.slider .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   padding: 10px;
-  border-radius:50px;
+  border-radius: 50px;
 }
 
-.slider .prev{
+.slider .prev {
   left: 10px;
 }
 
-.slider .next{
+.slider .next {
   right: 10px;
 }
 
@@ -307,3 +322,7 @@ swiper-slide img {
   width: 50%;
   height: 100%;
 }
+
+/* ------------------- */
+
+#darkMode {}

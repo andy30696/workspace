@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 body {
-    background-image: url("https://img.freepik.com/foto-gratis/elementos-venta-eventos-cyber-monday_23-2148675059.jpg?w=1800&t=st=1692365846~exp=1692366446~hmac=a67ad441a708477f50bf157cc7bbecd96689262a76b7947f5be6615d01c4102a");
+    background-image: url("https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80");
     background-attachment: fixed;
-    background-position: bottom 2px right 1px;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Numans', sans-serif;
