@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     agregarComentario(newComment);
     document.getElementById("addComment").value = "";
-    document.getElementById("stars").value = 3;
+    document.getElementById("stars").value = 5;
 
   });
 
