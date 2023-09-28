@@ -21,10 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
 const username = document.getElementById('loginIndex');
 const data = localStorage.getItem("inputText");
 
+//Funcionalidad de cerrar sesion
+
 if (data) {
     username.textContent = data;
 } else {
-    username.textContent = "Registrate";
+    const opcionMenu = document.getElementById("btnCerrarSesion");
+    username.textContent = "Login";
+    opcionMenu.innerHTML = "Registrarse";
 }
 
 const btnCerrarSesion = document.getElementById("btnCerrarSesion");
