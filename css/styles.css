@@ -325,11 +325,3 @@ swiper-slide img {
 }
 
 /* ------------------- */
-
-#darkMode {
-  background-color: transparent;
-  color: #dee2e6;
-  font-size: 16px;
-  padding: 4px 16px;
-  border: none;
-}

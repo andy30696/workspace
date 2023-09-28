@@ -298,8 +298,9 @@ function changeMode(mode) {
 
 const modeButton = document.getElementById("darkMode");
 modeButton.addEventListener("click", () => {
-  changeMode(mode);
+  changeMode(currentMode === "light" ? "dark" : "light");
 });
+changeMode(mode);
 
 
 
