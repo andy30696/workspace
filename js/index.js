@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("autos").addEventListener("click", function () {
         localStorage.setItem("catID", 101);
@@ -24,3 +26,10 @@ if (data) {
 } else {
     username.textContent = "Registrate";
 }
+
+const btnCerrarSesion = document.getElementById("btnCerrarSesion");
+
+btnCerrarSesion.addEventListener("click", function () {
+    localStorage.clear('inputText');
+    window.location.href = "index.html";
+});

@@ -256,6 +256,7 @@ function getStarIcons(score) {
   return starIcons.join("");
 }
 
+
 // relacionados 
 
 function showRelacionados(data) {
@@ -267,7 +268,7 @@ function showRelacionados(data) {
             <img class="card-img-top" width="200" src="${data.relatedProducts[i].image}"alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">${data.relatedProducts[i].name}</h5>
-            <button class="btn btn-primary masInfo" onclick="setProductID(${data.id})"> Mas Info </button>       
+            <button class="btn btn-primary masInfo" onclick="setProductInfoRelacionados(${data.relatedProducts[i].id})"> Mas Info </button>       
         </div>
       </div>
     </div>
@@ -275,15 +276,17 @@ function showRelacionados(data) {
   }
 }
 
-function setProductID(id) {
+
+function setProductInfoRelacionados(id) {
+  console.log("Se llamó a setProductID con ID:", id);
   localStorage.setItem("setProduct", id);
-  window.location = "product-info.html";
+  window.location.href = "product-info.html";
 }
 
 
 //ModoNocturno
 
-const dark = "background: black; color: white;";
+const dark = "background: #1f1f1f; color: white;";
 const light = "background: white; color: black;";
 
 let currentMode = "light";

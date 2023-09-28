@@ -36,30 +36,28 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <!--
-          <li class="nav-item">
-            <a class="nav-link" href="login.html" id="loginIndex">Login</a>
-          </li>
-        </ul>-->
-          <!-- boost de boton-->
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="loginIndex" data-bs-toggle="dropdown"
-              aria-expanded="false" href="login.html">
-              Login
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-              <li><a class="dropdown-item active" href="cart.html">Mi Carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="index.html">Cerrar Sesión</a></li>
-            </ul>
-          </div>
-          <!-- boost de boton-->
+        </ul>
+        <!-- boost de boton-->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="loginIndex" data-bs-toggle="dropdown"
+            aria-expanded="false" href="login.html">
+            Login
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item active" href="cart.html">Mi Carrito</a></li>
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li><button id="darkMode">Modo oscuro</button></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a id="btnCerrarSesion" class="dropdown-item" href="login.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+        <!-- boost de boton-->
       </div>
     </div>
   </nav>
+  <!--Slider-->
   <main>
     <div class="container">
       <div class="row gy-4 gx-4" id="product-details">
@@ -105,18 +103,6 @@
 
     </div>
 
-    <!-- Dark mode -->
-    <div>
-      <button id="darkMode">
-        <i class="fas fa-moon"> </i>
-      </button>
-    </div>
-
-
-
-
-
-
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -139,6 +125,7 @@
   <script src="js/product-info.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
   <script src="js/index.js"></script>
+  <script src="js/login.js"></script>
 
 
 </body>

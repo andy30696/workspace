@@ -36,20 +36,20 @@ function showData(dataArray) {
   for (const item of dataArray) {
     container.innerHTML += `
     <div class="col-12 col-xl-4 col-md-4 col-sm-6">
-      <div class="card">
-            <img class="card-img-top" width="200" src="${item.image}"alt="Card image cap">
+      <div class="card"> <!-- Cambio de color de fondo aquí -->
+        <img class="card-img-top" width="250" src="${item.image}" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">${item.name}</h5>
-            <p class="card-text">${item.description}
-            <br> Precio USD: ${item.cost} 
-            <br> Vendidos: ${item.soldCount}</p>
-            <hr>
-            <a href="#" class="btn btn-primary"> Comprar </a>
-            <button class="btn btn-primary masInfo" onclick="setProductID(${item.id})"> Mas Info </button>        
+          <h5 class="card-title">${item.name}</h5>
+          <p style="color:black" class="card-text">${item.description}
+          <br> Precio USD: ${item.cost} 
+          <br> Vendidos: ${item.soldCount}</p>
+          <hr style="color:black">
+          <a href="#" class="btn btn-primary"> Comprar </a>
+          <button class="btn btn-primary masInfo" onclick="setProductID(${item.id})"> Mas Info </button>        
         </div>
       </div>
     </div>
-    `; 
+    `;
   }
 }
 
@@ -158,3 +158,23 @@ function mostrarMensaje(texto) {
 function ocultarMensaje() {
   mensajeEmergente.style.display = "none";
 }
+
+
+//ModoNocturno
+
+const dark = "background: #1f1f1f; color: white;";
+const light = "background: white; color: black;";
+
+let currentMode = "light";
+
+function changeMode(mode) {
+  currentMode = mode;
+  document.body.style.cssText = mode === "light" ? light : dark;
+}
+
+const modeButton = document.getElementById("darkMode");
+modeButton.addEventListener("click", () => {
+  changeMode(currentMode === "light" ? "dark" : "light");
+});
+
+changeMode(currentMode);

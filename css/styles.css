@@ -193,7 +193,8 @@ a.custom-card:hover {
 }
 
 .card-img-top {
-  margin-top: 5%;
+  margin-top: 4%;
+  padding: 3%;
 }
 
 
@@ -325,4 +326,10 @@ swiper-slide img {
 
 /* ------------------- */
 
-#darkMode {}
+#darkMode {
+  background-color: transparent;
+  color: #dee2e6;
+  font-size: 16px;
+  padding: 4px 16px;
+  border: none;
+}
