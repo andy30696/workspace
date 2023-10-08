@@ -24,13 +24,13 @@ nav a {
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
-    font-size: 3.5rem;
+    font-size: 3.5em;
   }
 }
 
 .jumbotron {
   height: 50vh;
-  padding: 5em inherit;
+  padding: 5% inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
   background: url('../img/cover_back.png');
