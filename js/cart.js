@@ -5,6 +5,7 @@ fetch(URL)
   .then((data) => {
     console.log(data);
     showProduct(data);
+    showCarrito(data);
   })
   .catch((error) => console.error("Error al obtener los datos", error));
 
@@ -62,31 +63,31 @@ $(document).ready(function () {
   });
 });
 
-/*
-
 
 function showCarrito() {
+  console.log("Entra a showCarrito");
   // Obtiene los productos almacenados en localStorage
-  const carritoProductos =
-  JSON.parse(localStorage.getItem("carritoProductos")) || [];
-  
+  const carritoProductos = JSON.parse(localStorage.getItem("carritoProductos")) || [];
+
   const carrito = document.getElementById("tablebody");
-  
+
   // Muestra los productos en la tabla del carrito
   carritoProductos.forEach((element) => {
     const row = document.createElement("tr");
+    console.log(carritoProductos);
     row.innerHTML = `
-        <td>${element.element}</td>
-        <td>${element.unitcost}</td>
-        <td>${element.count}</td>
-        <td>${element.unitcost * element.count}</td>
+    <td scope="row"><img src="${element.imagen}" width=100px alt="product"></td>
+    <td scope="row">${element.producto}</td>
+    <td scope="row">USD ${element.precio}</td>
+    <td scope="row">${element.cantidad}</td>
+  <td scope="row"><span class="subtotal-value">${element.precio}</span></td>
       `;
     carrito.appendChild(row);
   });
 }
 
 // Llama a la función para mostrar los productos en el carrito al cargar la página
-showCarrito();
+
 let productosDatal;
 
 function calcularSubtotal(precio, cantidad) {
@@ -94,7 +95,6 @@ function calcularSubtotal(precio, cantidad) {
 }
 
 
-          */
 
 
 

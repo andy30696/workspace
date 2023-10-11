@@ -231,9 +231,8 @@ function agregarComentario(newComment) {
       <p>${newComment.description}</p>
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-row align-items-center">
-          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${
-    newComment.dateTime
-  } - ${newComment.score}</p>
+          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${newComment.dateTime
+    } - ${newComment.score}</p>
         </div>
         <div class="d-flex flex-row align-items-center">
           ${getStarIcons(newComment.score)}
@@ -279,55 +278,40 @@ function setProductInfoRelacionados(id) {
   window.location.href = "product-info.html";
 }
 
-// SET ITEM
 
+
+// SET ITEM
+const productosGuardados = JSON.parse(localStorage.getItem("carritoProductos")) || [];
 let productosData;
-let carritoProducto = [];
+let carritoProducto = JSON.parse(localStorage.getItem("carritoProductos")) || [];
+const btnAdd = document.getElementById("btnAdd");
+
 
 function agregarCarrito(data) {
-  data.forEach((element) => {
-    const btnAdd = document.getElementById("btnAdd");
+  btnAdd.addEventListener("click", () => {
+    console.log("Botón de compra clickeado");
 
-    btnAdd.addEventListener("click", () => {
-      const productosGuardados =
-        JSON.parse(localStorage.getItem("carritoProductos")) || [];
-        console.log("evento");
+    const productoSeleccionado = {
+      id: data.id,
+      producto: data.name,
+      precio: data.cost,
+      cantidad: 1,
+      imagen: data.images[0]
+    };
+    console.log(productoSeleccionado);
+    productosGuardados.push(productoSeleccionado);
 
-      const productoSeleccionado = {
-        id: element.id,
-        name: element.name,
-        precio: element.cost,
-        imagen: element.image,
-      };
-      productosGuardados.push(productoSeleccionado);
-      carritoProducto.push(productoSeleccionado);
-      localStorage.setItem(
-        "carritoProductos",
-        JSON.stringify(productosGuardados)
-      );
 
-      actualizarCarrito();
-      window.alert(`Se ha agregado` + element.producto + `al carrito`);
-    });
+    localStorage.setItem(
+      "carritoProductos",
+      JSON.stringify(productosGuardados)
+    );
+    window.alert(`Se ha agregado ${productoSeleccionado.producto} al carrito`);
+    showCarrito();
   });
+
 }
 
-function actualizarCarrito() {
-  // Limpiar contenido previo del carrito
-  carro.innerHTML = "";
-
-  // Mostrar los productos en el carrito
-  carritoProducto.forEach((producto) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-            <td>${producto.producto}</td>
-            <td>${producto.precio}</td>
-            <td>${producto.cantidad}</td>
-            <td>${producto.precio * producto.cantidad}</td>
-        `;
-    carro.appendChild(row);
-  });
-}
 
 //ModoNocturno
 
@@ -346,3 +330,6 @@ modeButton.addEventListener("click", () => {
   changeMode(currentMode === "light" ? "dark" : "light");
 });
 changeMode(mode);
+
+
+
