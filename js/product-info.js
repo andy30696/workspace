@@ -2,24 +2,27 @@ const storedValue = localStorage.getItem("setProduct");
 const storedValueUsuario = localStorage.getItem("inputText");
 const URL_PRODUCT = `https://japceibal.github.io/emercado-api/products/${storedValue}.json`;
 const URL_COMENTARIOS = `https://japceibal.github.io/emercado-api/products_comments/${storedValue}.json`;
-const productDetailsElement = document.getElementById('product-details');
+const productDetailsElement = document.getElementById("product-details");
 const relacionados = document.getElementById("relacionados");
 
 fetch(URL_PRODUCT)
-  .then(response => response.json()
-  )
-  .then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     console.log(data);
     showProduct(data);
     showRelacionados(data);
+    agregarCarrito(data);
   })
-  .catch(error => console.error('Error al obtener información del producto:', error));
+  .catch((error) =>
+    console.error("Error al obtener información del producto:", error)
+  );
 
 /*---------------------------------Productos-----------------------------------------*/
 
 function showProduct(dataObj) {
-  console.log(dataObj)
-  const { category, cost, currency, description, name, images, soldCount } = dataObj;
+  console.log(dataObj);
+  const { category, cost, currency, description, name, images, soldCount } =
+    dataObj;
   const [img1, img2, img3, img4] = images;
 
   let template = `
@@ -76,23 +79,25 @@ function showProduct(dataObj) {
 
 /*-------------------------COMENTARIOS----------------------------------- */
 fetch(URL_COMENTARIOS)
-  .then(response => response.json())
-  .then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     console.log(data);
     print_comentarios(data);
   })
-  .catch(error => console.error('Error al obtener información del producto:', error));
-
+  .catch((error) =>
+    console.error("Error al obtener información del producto:", error)
+  );
 
 function print_comentarios(data) {
-
   let data_comentarios = ""; // se crea un contenedor vacio para almacenar los datos de los comentarios.
 
-  for (let i = 0; i < data.length; i++) { // Se utiliza un bucle for para recorrer cada elemento en el array data que contiene los datos de los comentarios. 
+  for (let i = 0; i < data.length; i++) {
+    // Se utiliza un bucle for para recorrer cada elemento en el array data que contiene los datos de los comentarios.
     let estrellas = data[i].score; // Se obtiene la calificación del comentario actual y se almacena en la variable estrellas.
-    console.log("estrellas", estrellas)
+    console.log("estrellas", estrellas);
 
-    if (estrellas == 1) { // se agraga una tarjeta al contenedor con los datos de la descripcion, usuario, hora y la calificacion.
+    if (estrellas == 1) {
+      // se agraga una tarjeta al contenedor con los datos de la descripcion, usuario, hora y la calificacion.
       data_comentarios += ` 
       <div class="card mb-4">
       <div class="card-body">
@@ -110,7 +115,7 @@ function print_comentarios(data) {
           </div>
         </div>
       </div>
-    </div>`
+    </div>`;
     } else if (estrellas == 2) {
       data_comentarios += `
       <div class="card mb-4">
@@ -129,8 +134,7 @@ function print_comentarios(data) {
               </div>
             </div>
           </div>
-        </div>`
-
+        </div>`;
     } else if (estrellas == 3) {
       data_comentarios += `
       <div class="card mb-4">
@@ -149,8 +153,7 @@ function print_comentarios(data) {
               </div>
             </div>
           </div>
-        </div>`
-
+        </div>`;
     } else if (estrellas == 4) {
       data_comentarios += `
       <div class="card mb-4">
@@ -169,8 +172,7 @@ function print_comentarios(data) {
               </div>
             </div>
           </div>
-        </div>`
-
+        </div>`;
     } else if (estrellas == 5) {
       data_comentarios += `
       <div class="card mb-4">
@@ -189,12 +191,10 @@ function print_comentarios(data) {
               </div>
             </div>
           </div>
-        </div>`
+        </div>`;
     }
-
   }
   document.getElementById("comentarios").innerHTML = data_comentarios;
-
 }
 
 ////////////////////////////
@@ -202,17 +202,15 @@ function print_comentarios(data) {
 document.addEventListener("DOMContentLoaded", () => {
   const btnComment = document.getElementById("submit");
   btnComment.addEventListener("click", () => {
-
     const inputEstrellas = document.getElementById("stars").value;
     const inputComment = document.getElementById("addComment").value;
     console.log("hola");
-
 
     const newComment = {
       user: storedValueUsuario,
       description: inputComment,
       dateTime: new Date().toLocaleString(),
-      score: inputEstrellas
+      score: inputEstrellas,
     };
 
     console.log(newComment);
@@ -220,9 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     agregarComentario(newComment);
     document.getElementById("addComment").value = "";
     document.getElementById("stars").value = 5;
-
   });
-
 });
 
 function agregarComentario(newComment) {
@@ -235,7 +231,9 @@ function agregarComentario(newComment) {
       <p>${newComment.description}</p>
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-row align-items-center">
-          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${newComment.dateTime} - ${newComment.score}</p>
+          <p class="small mb-0 ms-2"><strong>${newComment.user}</strong> - ${
+    newComment.dateTime
+  } - ${newComment.score}</p>
         </div>
         <div class="d-flex flex-row align-items-center">
           ${getStarIcons(newComment.score)}
@@ -256,8 +254,7 @@ function getStarIcons(score) {
   return starIcons.join("");
 }
 
-
-// relacionados 
+// relacionados
 
 function showRelacionados(data) {
   relacionados.innerHTML = "";
@@ -276,13 +273,61 @@ function showRelacionados(data) {
   }
 }
 
-
 function setProductInfoRelacionados(id) {
   console.log("Se llamó a setProductID con ID:", id);
   localStorage.setItem("setProduct", id);
   window.location.href = "product-info.html";
 }
 
+// SET ITEM
+
+let productosData;
+let carritoProducto = [];
+
+function agregarCarrito(data) {
+  data.forEach((element) => {
+    const btnAdd = document.getElementById("btnAdd");
+
+    btnAdd.addEventListener("click", () => {
+      const productosGuardados =
+        JSON.parse(localStorage.getItem("carritoProductos")) || [];
+        console.log("evento");
+
+      const productoSeleccionado = {
+        id: element.id,
+        name: element.name,
+        precio: element.cost,
+        imagen: element.image,
+      };
+      productosGuardados.push(productoSeleccionado);
+      carritoProducto.push(productoSeleccionado);
+      localStorage.setItem(
+        "carritoProductos",
+        JSON.stringify(productosGuardados)
+      );
+
+      actualizarCarrito();
+      window.alert(`Se ha agregado` + element.producto + `al carrito`);
+    });
+  });
+}
+
+function actualizarCarrito() {
+  // Limpiar contenido previo del carrito
+  carro.innerHTML = "";
+
+  // Mostrar los productos en el carrito
+  carritoProducto.forEach((producto) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+            <td>${producto.producto}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.cantidad}</td>
+            <td>${producto.precio * producto.cantidad}</td>
+        `;
+    carro.appendChild(row);
+  });
+}
 
 //ModoNocturno
 
@@ -301,7 +346,3 @@ modeButton.addEventListener("click", () => {
   changeMode(currentMode === "light" ? "dark" : "light");
 });
 changeMode(mode);
-
-
-
-

@@ -43,14 +43,16 @@ function showData(dataArray) {
           <p style="color:black" class="card-text">${item.description}
           <br> Precio USD: ${item.cost} 
           <br> Vendidos: ${item.soldCount}</p>
-          <hr style="color:black">
-          <a href="#" class="btn btn-primary"> Comprar </a>
+          <hr style="color:black">   
           <button class="btn btn-primary masInfo" onclick="setProductID(${item.id})"> Mas Info </button>        
         </div>
       </div>
     </div>
     `;
   }
+  
+
+
 }
 
 //funcion para filtrar

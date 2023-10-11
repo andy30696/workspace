@@ -12,11 +12,9 @@ function showProduct(data) {
   const tabla = document.getElementById("tablebody");
 
   data.articles.forEach((element) => {
-    
-   /*const cantidadInput = `<input type="number" id="cantidad" name="cantidad" min="1" value="${element.count}" data-unit-cost="${element.unitCost}" />`;*/
-    
-    const cantidadInput =
-     `
+    /*const cantidadInput = `<input type="number" id="cantidad" name="cantidad" min="1" value="${element.count}" data-unit-cost="${element.unitCost}" />`;*/
+
+    const cantidadInput = `
         <input type="number" id="cantidad" name="cantidad" class="form-control" min="1"
         value="${element.count}" data-unit-cost="${element.unitCost}" style="width: 4rem;/>
         <label class="form-label" for="typeNumber"></label>
@@ -40,30 +38,81 @@ function showProduct(data) {
       const cantidad = parseInt(input.value, 10);
       const unitCost = parseFloat(input.getAttribute("data-unit-cost"));
       const subtotal = isNaN(cantidad) ? 0 : cantidad * unitCost;
-      const subtotalElement = input.parentElement.nextElementSibling.querySelector(".subtotal"); 
+      const subtotalElement =
+        input.parentElement.nextElementSibling.querySelector(".subtotal");
       subtotalElement.innerHTML = `${data.articles[0].currency} ${subtotal}`;
     });
   });
-} 
-
-
-
+}
 
 /* Envio */
 
-$(document).ready(function(){
+$(document).ready(function () {
+  $("#smartwizard").smartWizard({
+    selected: 0,
+    theme: "arrows",
+    autoAdjustHeight: true,
+    transitionEffect: "fade",
+    showStepURLhash: false,
 
-    $('#smartwizard').smartWizard({
-            selected: 0,
-            theme: 'arrows',
-            autoAdjustHeight:true,
-            transitionEffect:'fade',
-            showStepURLhash: false,
+    lang: {
+      next: "Siguiente", // Cambia el texto del botón "Next" a "Siguiente"
+      previous: "Anterior", // Cambia el texto del botón "Previous" a "Anterior"
+    },
+  });
+});
 
-            lang: {
-                next: 'Siguiente',  // Cambia el texto del botón "Next" a "Siguiente"
-                previous: 'Anterior'  // Cambia el texto del botón "Previous" a "Anterior"
-              }
-            });
-          });
-         
+/*
+
+
+function showCarrito() {
+  // Obtiene los productos almacenados en localStorage
+  const carritoProductos =
+  JSON.parse(localStorage.getItem("carritoProductos")) || [];
+  
+  const carrito = document.getElementById("tablebody");
+  
+  // Muestra los productos en la tabla del carrito
+  carritoProductos.forEach((element) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${element.element}</td>
+        <td>${element.unitcost}</td>
+        <td>${element.count}</td>
+        <td>${element.unitcost * element.count}</td>
+      `;
+    carrito.appendChild(row);
+  });
+}
+
+// Llama a la función para mostrar los productos en el carrito al cargar la página
+showCarrito();
+let productosDatal;
+
+function calcularSubtotal(precio, cantidad) {
+  return precio * cantidad;
+}
+
+
+          */
+
+
+
+//ModoNocturno
+
+const dark = "background: #1f1f1f; color: white;";
+const light = "background: white; color: black;";
+
+let currentMode = "light";
+
+function changeMode(mode) {
+  currentMode = mode;
+  document.body.style.cssText = mode === "light" ? light : dark;
+}
+
+const modeButton = document.getElementById("darkMode");
+modeButton.addEventListener("click", () => {
+  changeMode(currentMode === "light" ? "dark" : "light");
+});
+changeMode(mode);
+
