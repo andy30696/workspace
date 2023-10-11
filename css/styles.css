@@ -41,12 +41,24 @@ nav a {
   font-weight: bold;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1166px) {
   .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    background: url('../img/jap1.png');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
+
+@media (max-width: 660px) {
+  .jumbotron {
+
+    background: url('../img/jap.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+
 
 .jumbotron p:last-child {
   margin-bottom: 0;
