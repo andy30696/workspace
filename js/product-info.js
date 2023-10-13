@@ -107,7 +107,7 @@ function print_comentarios(data) {
             <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
           </div>
           <div class="d-flex flex-row align-items-center">
-            <p><span class="fa fa-star"></span>
+            <p><span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
@@ -126,8 +126,8 @@ function print_comentarios(data) {
                 <p class="small mb-0 ms-2"><strong>${data[i].user}</strong> - ${data[i].dateTime} - ${data[i].score} </p>
               </div>
               <div class="d-flex flex-row align-items-center">
-                <p><span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                <p><span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span></p>
@@ -278,14 +278,10 @@ function setProductInfoRelacionados(id) {
   window.location.href = "product-info.html";
 }
 
-
-
 // SET ITEM
 const productosGuardados = JSON.parse(localStorage.getItem("carritoProductos")) || [];
-let productosData;
 let carritoProducto = JSON.parse(localStorage.getItem("carritoProductos")) || [];
 const btnAdd = document.getElementById("btnAdd");
-
 
 function agregarCarrito(data) {
   btnAdd.addEventListener("click", () => {
@@ -296,11 +292,11 @@ function agregarCarrito(data) {
       producto: data.name,
       precio: data.cost,
       cantidad: 1,
-      imagen: data.images[0]
+      imagen: data.images[0],
+      moneda: data.currency
     };
     console.log(productoSeleccionado);
     productosGuardados.push(productoSeleccionado);
-
 
     localStorage.setItem(
       "carritoProductos",

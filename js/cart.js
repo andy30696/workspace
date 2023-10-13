@@ -8,16 +8,14 @@ fetch(URL)
     showCarrito(data);
   })
   .catch((error) => console.error("Error al obtener los datos", error));
-
+// Parte 1 -------------------------------------------------------------------
 function showProduct(data) {
   const tabla = document.getElementById("tablebody");
 
   data.articles.forEach((element) => {
-    /*const cantidadInput = `<input type="number" id="cantidad" name="cantidad" min="1" value="${element.count}" data-unit-cost="${element.unitCost}" />`;*/
-
     const cantidadInput = `
         <input type="number" id="cantidad" name="cantidad" class="form-control" min="1"
-        value="${element.count}" data-unit-cost="${element.unitCost}" style="width: 4rem;/>
+        value="${element.count}" data-unit-cost="${element.unitCost}" style="width: 4rem;"/>
         <label class="form-label" for="typeNumber"></label>
     `;
 
@@ -33,6 +31,7 @@ function showProduct(data) {
             `;
   });
 
+  // parte 3 -------------------------------------------------------------
   // Agregar un evento de escucha al input de cantidad para calcular el subtotal en tiempo real
   tabla.querySelectorAll("input[name='cantidad']").forEach((input) => {
     input.addEventListener("input", () => {
@@ -45,7 +44,7 @@ function showProduct(data) {
     });
   });
 }
-
+// ----------------------------------------------------------------------------------------
 /* Envio */
 
 $(document).ready(function () {
@@ -64,11 +63,10 @@ $(document).ready(function () {
 });
 
 
-function showCarrito() {
+function showCarrito(data) {
   console.log("Entra a showCarrito");
   // Obtiene los productos almacenados en localStorage
   const carritoProductos = JSON.parse(localStorage.getItem("carritoProductos")) || [];
-
   const carrito = document.getElementById("tablebody");
 
   // Muestra los productos en la tabla del carrito
@@ -78,11 +76,25 @@ function showCarrito() {
     row.innerHTML = `
     <td scope="row"><img src="${element.imagen}" width=100px alt="product"></td>
     <td scope="row">${element.producto}</td>
-    <td scope="row">USD ${element.precio}</td>
-    <td scope="row">${element.cantidad}</td>
-  <td scope="row"><span class="subtotal-value">${element.precio}</span></td>
+    <td scope="row">${data.articles[0].currency} ${element.precio}</td>
+    <input type="number" id="cantidad" name="cantidad" class="form-control" min="1"
+      value="${element.cantidad}" data-unit-cost="${element.precio}" style="width: 4rem";/>
+      
+  <td scope="row"><span class="subtotal-value">${data.articles[0].currency}${element.precio}</span></td>
       `;
     carrito.appendChild(row);
+
+    carrito.querySelectorAll("input[name='cantidad']").forEach((input) => {
+      input.addEventListener("input", () => {
+        const cantidadInput = parseInt(input.value, 10);
+        const unitCost = parseFloat(input.getAttribute("data-unit-cost"));
+        const subtotal = isNaN(cantidadInput) ? 0 : cantidadInput * unitCost;
+        const subtotalElement =
+          input.parentElement.querySelector(".subtotal-value");
+        subtotalElement.innerHTML = `${data.articles[0].currency} ${subtotal}`;
+      });
+    });
+
   });
 }
 
@@ -93,9 +105,6 @@ let productosDatal;
 function calcularSubtotal(precio, cantidad) {
   return precio * cantidad;
 }
-
-
-
 
 
 //ModoNocturno
