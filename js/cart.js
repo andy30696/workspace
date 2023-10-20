@@ -1,4 +1,5 @@
 const URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+let subtotalGeneral = 0;;
 
 fetch(URL)
   .then((res) => res.json())
@@ -41,6 +42,18 @@ function showProduct(data) {
       const subtotalElement =
         input.parentElement.nextElementSibling.querySelector(".subtotal");
       subtotalElement.innerHTML = `${data.articles[0].currency} ${subtotal}`;
+
+       // Visualizar subtotal general 
+    // APARECE NAN al subir la cantidad de los productos agregados antes de subir la cantidad del producto default
+    //Si se sube primero la cantidad del defaul no sale NaN 
+    //Si no se cambia la cantidad, no aparece el subtotalgeneral
+    tabla.querySelectorAll(".subtotal").forEach((subtotalElement) => {
+      subtotalGeneral += parseFloat(subtotalElement.innerHTML.replace(data.articles[0].currency, ""));
+    });
+
+    const subtotalGeneralElement = document.getElementById("costos"); 
+    subtotalGeneralElement.innerHTML = `${data.articles[0].currency} ${subtotalGeneral}`;
+
     });
   });
 }
@@ -62,11 +75,11 @@ $(document).ready(function () {
   });
 });
 
-
 function showCarrito(data) {
   console.log("Entra a showCarrito");
   // Obtiene los productos almacenados en localStorage
-  const carritoProductos = JSON.parse(localStorage.getItem("carritoProductos")) || [];
+  const carritoProductos =
+    JSON.parse(localStorage.getItem("carritoProductos")) || [];
   const carrito = document.getElementById("tablebody");
 
   // Muestra los productos en la tabla del carrito
@@ -92,11 +105,24 @@ function showCarrito(data) {
         const subtotalElement =
           input.parentElement.querySelector(".subtotal-value");
         subtotalElement.innerHTML = `${data.articles[0].currency} ${subtotal}`;
+      
+    // Visualizar subtotal general 
+    // Aparece NAN al subir la cantidad de los productos agregados antes de subir la cantidad del producto default
+    //Si se sube primero la cantidad del defaul no sale NaN 
+    //Si no se cambia la cantidad, no aparece el subtotalgeneral
+    carrito.querySelectorAll(".subtotal").forEach((subtotalElement) => {
+          subtotalGeneral += parseFloat(subtotalElement.innerHTML.replace(data.articles[0].currency, ""));
+        });
+    
+        const subtotalGeneralElement = document.getElementById("costos"); 
+        subtotalGeneralElement.innerHTML = `${data.articles[0].currency} ${subtotalGeneral}`;
+      
+      
       });
     });
-
   });
 }
+
 
 // Llama a la función para mostrar los productos en el carrito al cargar la página
 
@@ -106,6 +132,9 @@ function calcularSubtotal(precio, cantidad) {
   return precio * cantidad;
 }
 
+//Entrega 6
+
+function mostrarCostos() {}
 
 //ModoNocturno
 
@@ -124,4 +153,3 @@ modeButton.addEventListener("click", () => {
   changeMode(currentMode === "light" ? "dark" : "light");
 });
 changeMode(mode);
-
