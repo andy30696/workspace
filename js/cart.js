@@ -122,13 +122,6 @@ function showCarrito(data) {
 
   }
   actualizarSubtotal();
-  // Agrega escuchadores de eventos a los number para detectar cambios
-
-
-  // Inicializa el sub-total
-
-
-
 
 }
 
