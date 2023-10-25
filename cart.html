@@ -73,14 +73,14 @@
       <div class="container">
         <hr>
 
-        <div class="col-md-6 envios">
+        <div class="col-md-6 envios form-check">
           <h2>Tipos de envío</h2>
-          <input type="radio" id="premium" name="envio" value="premium" />
-          <label for="premium"> Premium 2 a 5 días</label><br />
-          <input type="radio" id="express" name="envio" value="express" />
-          <label for="express"> Express 5 a 8 días</label><br />
-          <input checked type="radio" id="standard" name="envio" value="standard" />
-          <label for="standard"> Standard 12 a 15 días</label>
+          <input type="radio" class="form-check-input" id="premium" name="envio" value="premium" required />
+          <label for="premium" class="form-check-label"> Premium 2 a 5 días</label><br />
+          <input type="radio" class="form-check-input" id="express" name="envio" value="express" required />
+          <label for="express" class="form-check-label"> Express 5 a 8 días</label><br />
+          <input type="radio" class="form-check-input" id="standard" name="envio" value="standard" required />
+          <label for="standard" class="form-check-label"> Standard 12 a 15 días</label>
           <div class="invalid-feedback">
             Ingrese un tipo de envío
           </div>
@@ -129,7 +129,7 @@
 
         <h3>Costos</h3>
         <ul class="list-group">
-          <li class="list-group-item">Costo de envio <br> Costo unitario del producto por cantidad
+          <li class="list-group-item">Costo de Productos <br> Costo unitario del producto por cantidad
             <span id="costos" class="badge badge-primary badge-pill"></span>
           </li>
           <li class="list-group-item">Costo de envio <br> Según el tipo de envio

@@ -14,7 +14,8 @@ fetch(URL)
 
 function showCarrito(data) {
   console.log("Entra a showCarrito");
-
+  let costoEnvio = 0;
+  let subtotal = 0;
   // Obtiene los productos almacenados en localStorage
   const carritoProductos = JSON.parse(localStorage.getItem("carritoProductos")) || [];
   const carrito = document.getElementById("tablebody");
@@ -53,7 +54,7 @@ function showCarrito(data) {
 
   // Función para actualizar el sub-total
   function actualizarSubtotal() {
-    let subtotal = 0;
+    // subtotal = 0;
     numbers.forEach(number => {
       const cantidadInput = number.value;
       const unitCost = parseFloat(number.getAttribute('data-unit-cost'));
@@ -65,10 +66,8 @@ function showCarrito(data) {
     // Calcular el costo de envío
     const costoEnvioElement = document.getElementById("costoEnvio");
 
-    // let costoEnvio = 0;
-
     function actualizarCostoEnvio() {
-
+      // costoEnvio = 0;
       const envioSeleccionado = document.querySelector("input[name='envio']:checked");
       if (envioSeleccionado) {
         const envioTipo = envioSeleccionado.value;
@@ -83,42 +82,54 @@ function showCarrito(data) {
       costoEnvioElement.textContent = `Precio: ${data.articles[0].currency} ${costoEnvio.toFixed(2)}`;
 
       //actualizarCostoTotal();
+
+
+      function actualizarCostoTotal() {
+        const costoTotalDiv = document.getElementById("costoTotal");
+        let costoTotal = 0;
+        //costoTotal = parseFloat(costoEnvioDiv.textContent);
+        costoEnvio = parseFloat(costoEnvio);
+
+        console.log("costoEnvio dentro de actualizarCostoTotal: " + costoEnvio);
+        console.log("subtotal dentro de actualizarCostoTotal: " + subtotal);
+
+        costoTotal = costoEnvio + subtotal;
+        costoTotalDiv.textContent = `Precio: ${data.articles[0].currency} ${costoTotal.toFixed(2)}`;
+
+
+      }
+
+      envioInput.forEach(input => {
+        input.addEventListener('input', () => {
+          actualizarCostoEnvio();
+          actualizarCostoTotal();
+        });
+      });
+
+
+      actualizarCostoTotal();
     }
 
-    function actualizarCostoTotal() {
-      const costoTotalDiv = document.getElementById("costoTotal");
-      let costoTotal = 0;
-      //costoTotal = parseFloat(costoEnvioDiv.textContent);
-      costoEnvio = parseFloat(costoEnvio);
+    actualizarCostoEnvio();
+    numbers.forEach(number => {
+      number.addEventListener('input', () => {
+        actualizarSubtotal();
+        actualizarCostoTotal();
+      });
+    });
 
-      console.log("costoEnvio dentro de actualizarCostoTotal: " + costoEnvio);
-      console.log("subtotal dentro de actualizarCostoTotal: " + subtotal);
 
-      costoTotal = costoEnvio + subtotal;
-      costoTotalDiv.textContent = `Precio: ${data.articles[0].currency} ${costoTotal.toFixed(2)}`;
-
-    }
-
-    // Agrega escuchadores de eventos a los number para detectar cambios
 
   }
-  numbers.forEach(number => {
-    number.addEventListener('input', () => {
-      actualizarSubtotal();
-      actualizarCostoTotal();
-    });
-  });
+  actualizarSubtotal();
+  // Agrega escuchadores de eventos a los number para detectar cambios
 
-  envioInput.forEach(input => {
-    input.addEventListener('input', () => {
-      actualizarCostoEnvio();
-      actualizarCostoTotal();
-    });
-  });
+
   // Inicializa el sub-total
-  // actualizarSubtotal();
-  // actualizarCostoEnvio();
-  // actualizarCostoTotal();
+
+
+
+
 }
 
 
@@ -201,6 +212,58 @@ bancariaRadio.addEventListener("change", function () {
     }, false)
   })
 })()
+
+//validación de todo el doc
+function validarCompra() {
+  // Realiza las validaciones
+  const envioRadios = document.getElementsByName("envio");
+  const direccionCalle = document.getElementById("calle").value.trim();
+  const direccionNumero = document.getElementById("numero").value.trim();
+  const direccionEsquina = document.getElementById("esquina").value.trim();
+  const formaPagoRadios = document.getElementsByName("formasDePago");
+
+  // Verifica que se haya seleccionado un tipo de envío
+  let envioSeleccionado = false;
+  for (const envioRadio of envioRadios) {
+    if (envioRadio.checked) {
+      envioSeleccionado = true;
+      break;
+    }
+  }
+
+  if (!envioSeleccionado) {
+    alert("Por favor seleccione un tipo de envío.");
+    return;
+  }
+
+  // Verifica que los campos de dirección estén completos
+  if (direccionCalle === "" || direccionNumero === "" || direccionEsquina === "") {
+    alert("Por favor complete todos los campos de dirección.");
+    return;
+  }
+
+
+  // Verifica que se haya seleccionado una forma de pago
+  let formaPagoSeleccionada = false;
+  for (const formaPagoRadio of formaPagoRadios) {
+    if (formaPagoRadio.checked) {
+      formaPagoSeleccionada = true;
+      break;
+    }
+  }
+
+  if (!formaPagoSeleccionada) {
+    alert("Por favor seleccione una forma de pago.");
+    return;
+  }
+
+  // Si todas las validaciones son exitosas, muestra un mensaje de éxito
+  alert("La compra se ha realizado con éxito.");
+}
+
+// Asocia la función de validación al botón de finalizar compras
+const botonFinalizarCompras = document.getElementById('submit');
+botonFinalizarCompras.addEventListener('click', validarCompra);
 
 
 
