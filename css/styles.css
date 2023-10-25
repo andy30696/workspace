@@ -283,6 +283,11 @@ a.custom-card:hover {
 }
 
 
+.form-label {
+  margin: 2%;
+}
+
+
 /*-----------------slider  -----------------*/
 .slider {
   width: 100%;
