@@ -11,7 +11,6 @@ fetch(URL)
   .catch((error) => console.error("Error al obtener los datos", error));
 // ----------------------------------------------------------------------------------------
 
-
 function showCarrito(data) {
   console.log("Entra a showCarrito");
   let costoEnvio = 0;
@@ -26,13 +25,14 @@ function showCarrito(data) {
     console.log(carritoProductos);
 
     row.innerHTML = `
-      <td scope="row"><img src="${element.imagen}" width=100px alt="product"></td>
-      <td scope="row">${element.producto}</td>
-      <td scope="row">${data.articles[0].currency} ${element.precio}</td>
+    <td scope="row"><img src="${element.imagen}" width=100px alt="product"></td>
+    <td scope="row">${element.producto}</td>
+    <td scope="row">${data.articles[0].currency} ${element.precio}</td>
       <input type="number" id="cantidad" name="cantidad" class="form-control seleccionar" min="1"
-        value="${element.cantidad}" data-unit-cost="${element.precio}" style="width: 4rem";/>
+      value="${element.cantidad}" data-unit-cost="${element.precio}" style="width: 4rem";/>
       <td scope="row"><span class="subtotal-value">${data.articles[0].currency}${element.precio}</span></td>
-    `;
+      <td scope="row"><button class="eliminar-articulo btn btn-danger"><i class="fas fa-trash"></i></button></td>
+      `;
 
     carrito.appendChild(row);
 
@@ -54,7 +54,7 @@ function showCarrito(data) {
 
   // Función para actualizar el sub-total
   function actualizarSubtotal() {
-    // subtotal = 0;
+    subtotal = 0;
     numbers.forEach(number => {
       const cantidadInput = number.value;
       const unitCost = parseFloat(number.getAttribute('data-unit-cost'));
@@ -83,15 +83,10 @@ function showCarrito(data) {
 
       //actualizarCostoTotal();
 
-
       function actualizarCostoTotal() {
         const costoTotalDiv = document.getElementById("costoTotal");
         let costoTotal = 0;
-        //costoTotal = parseFloat(costoEnvioDiv.textContent);
         costoEnvio = parseFloat(costoEnvio);
-
-        console.log("costoEnvio dentro de actualizarCostoTotal: " + costoEnvio);
-        console.log("subtotal dentro de actualizarCostoTotal: " + subtotal);
 
         costoTotal = costoEnvio + subtotal;
         costoTotalDiv.textContent = `Precio: ${data.articles[0].currency} ${costoTotal.toFixed(2)}`;
@@ -117,18 +112,37 @@ function showCarrito(data) {
         actualizarCostoTotal();
       });
     });
-
-
-
   }
   actualizarSubtotal();
 
+
+
+  // desafiate 
+  // Agrega un controlador de eventos para los botones de "Eliminar"
+  const eliminarBotones = document.querySelectorAll(".eliminar-articulo");
+  eliminarBotones.forEach((boton) => {
+    boton.addEventListener("click", (event) => {
+      // Obtiene la fila que contiene el botón de "Eliminar"
+      const fila = event.target.closest("tr");
+
+      // Obtiene el índice de la fila
+      const indice = Array.from(fila.parentNode.children).indexOf(fila);
+
+      // Elimina el artículo del carrito en la posición 'indice'
+      carritoProductos.splice(indice, 1);
+      localStorage.setItem("carritoProductos", JSON.stringify(carritoProductos));
+
+      // Elimina la fila de la tabla
+      fila.remove();
+
+      // Actualiza los totales
+      location.reload();
+    });
+  });
+
+
+  //--------------------------------
 }
-
-
-
-
-
 
 
 // Mostrar el tipo de pago seleccionado del modal
