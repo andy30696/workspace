@@ -183,6 +183,7 @@ creditoButton.addEventListener("change", () => {
 });
 
 var bancariaRadio = document.getElementById("bancaria");
+
 bancariaRadio.addEventListener("change", function () {
   if (bancariaRadio.checked) {
     numTarjetaInput.disabled = true;
@@ -193,8 +194,6 @@ bancariaRadio.addEventListener("change", function () {
 
   actualizarMetodoPagoLabel();
 });
-
-
 
 
 //validaciones
