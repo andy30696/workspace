@@ -72,13 +72,57 @@
       </div>
     </div>
   </nav>
+
   <main>
+    <!-- Boostrap perfil-->
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="col-md-6">
+        <h2 class="text-center text-body-secondary"> Perfil: </h2>
+        <hr>
+        <form>
+          <div class="row">
+            <div class="col mb-2">
+              <label for="exampleInputEmail1" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nameForm" aria-describedby="emailHelp" required>
+            </div>
+            
+            <div class="col mb-2">
+              <label for="exampleInputEmail1" class="form-label">Segundo nombre:</label>
+              <input type="text" class="form-control" id="secondNameForm" aria-describedby="emailHelp">
+            </div>  
+
+            <div class="w-100"></div>
+
+            <div class="col mb-2">
+              <label for="exampleInputPassword1" class="form-label" aria-placeholder="name" >Apellido</label>
+              <input type="password" class="form-control" id="lastNameForm" required>
+            </div>
+            
+            <div class="col mb-2">
+              <label for="exampleInputPassword1" class="form-label">Segundo apellido</label>
+              <input type="text" class="form-control" id="secondLastNameForm">
+            </div>
+            
+            <div class="w-100"></div>
+
+            <div class="col mb-2">
+              <label class="form-label" for="exampleCheck1" aria-placeholder="name">Email</label>
+              <input type="email" class="form-control" id="emailForm" required>
+            </div>
+
+            <div class="col mb-2">
+              <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Teléfono</label>
+              <input type="numb" class="form-control" id="phoneForm">
+            </div>
+            
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </form>
       </div>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

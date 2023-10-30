@@ -15,3 +15,4 @@ modeButton.addEventListener("click", () => {
     changeMode(currentMode === "light" ? "dark" : "light");
 });
 changeMode(mode);
+
