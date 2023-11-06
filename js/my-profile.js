@@ -5,17 +5,36 @@ const apellidoInput = document.getElementById('lastNameForm');
 const segundoNombre = document.getElementById('secondNameForm');
 const segundoApellido = document.getElementById('secondLastNameForm');
 const telefono = document.getElementById('phoneForm');
+//imagenes
+const formFileInput = document.getElementById("formFile");
+const imagenPerfil = document.getElementById("imagenPorDefecto");
+
 // Asigna los valores a los campos de entrada
 
 
 let emailGuardado = localStorage.getItem("inputText");
 emailInput.value = emailGuardado;
 
-
-
 const btn = document.getElementById('submitProfile');
-function datosVisibles() {
 
+btn.addEventListener("click", () => {
+    let perfil = {
+        nombre: nombreInput.value,
+        apellido: apellidoInput.value,
+        nombre2: segundoNombre.value,
+        apellido2: segundoApellido.value,
+        tel: telefono.value,
+        imagenURL: imagenPerfil.src
+    }
+    const perfilJSON = JSON.stringify(perfil);
+    localStorage.setItem('datosPerfil', perfilJSON);
+
+    console.log(localStorage.getItem("datosPerfil"));
+    datosVisibles();
+});
+
+
+function datosVisibles() {
     // Recupera la cadena JSON del localStorage
     const perfilJSON = localStorage.getItem('datosPerfil');
 
@@ -26,27 +45,26 @@ function datosVisibles() {
     segundoNombre.value = perfilDatos.nombre2;
     segundoApellido.value = perfilDatos.apellido2;
     telefono.value = perfilDatos.tel;
+    imagenPerfil.src = perfilDatos.imagenURL;
 }
 datosVisibles();
 
 
-btn.addEventListener("click", () => {
 
-    let perfil = {
-        nombre: nombreInput.value,
-        apellido: apellidoInput.value,
-        nombre2: segundoNombre.value,
-        apellido2: segundoApellido.value,
-        tel: telefono.value
+
+// Cuando se selecciona un archivo, muestra la imagen de perfil
+formFileInput.addEventListener("change", function () {
+    const file = formFileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imagenPerfil.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
     }
-    const perfilJSON = JSON.stringify(perfil);
-    localStorage.setItem('datosPerfil', perfilJSON);
-
-    console.log(localStorage.getItem("datosPerfil"));
-    datosVisibles();
-
-
 });
+
 
 //ModoNocturno
 
@@ -65,5 +83,3 @@ modeButton.addEventListener("click", () => {
     changeMode(currentMode === "light" ? "dark" : "light");
 });
 changeMode(mode);
-
-
