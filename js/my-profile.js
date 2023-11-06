@@ -14,6 +14,21 @@ emailInput.value = emailGuardado;
 
 
 const btn = document.getElementById('submitProfile');
+function datosVisibles() {
+
+    // Recupera la cadena JSON del localStorage
+    const perfilJSON = localStorage.getItem('datosPerfil');
+
+    // Convierte la cadena JSON de nuevo a un objeto JavaScript
+    const perfilDatos = JSON.parse(perfilJSON);
+    nombreInput.value = perfilDatos.nombre;
+    apellidoInput.value = perfilDatos.apellido;
+    segundoNombre.value = perfilDatos.nombre2;
+    segundoApellido.value = perfilDatos.apellido2;
+    telefono.value = perfilDatos.tel;
+}
+datosVisibles();
+
 
 btn.addEventListener("click", () => {
 
@@ -24,14 +39,14 @@ btn.addEventListener("click", () => {
         apellido2: segundoApellido.value,
         tel: telefono.value
     }
-
-    localStorage.setItem('datosPerfil', perfil);
+    const perfilJSON = JSON.stringify(perfil);
+    localStorage.setItem('datosPerfil', perfilJSON);
 
     console.log(localStorage.getItem("datosPerfil"));
+    datosVisibles();
+
 
 });
-
-
 
 //ModoNocturno
 
@@ -50,7 +65,5 @@ modeButton.addEventListener("click", () => {
     changeMode(currentMode === "light" ? "dark" : "light");
 });
 changeMode(mode);
-
-
 
 
