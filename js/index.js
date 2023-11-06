@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("autos").addEventListener("click", function () {
         localStorage.setItem("catID", 101);
@@ -17,18 +16,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+// Entrega 7
 // Mostrar nombre de usuario en el cabezal del index, luego de iniciar sesion
 const username = document.getElementById('loginIndex');
 const data = localStorage.getItem("inputText");
-
+const perfil = document.getElementById('perfil');
 //Funcionalidad de cerrar sesion
 
 if (data) {
     username.textContent = data;
+    perfil.style.display = "block";
+
+
 } else {
     const opcionMenu = document.getElementById("btnCerrarSesion");
     username.textContent = "Login";
     opcionMenu.innerHTML = "Registrarse";
+    perfil.style.display = "none";
 }
 
 const btnCerrarSesion = document.getElementById("btnCerrarSesion");

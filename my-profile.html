@@ -61,7 +61,7 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
             <li><a class="dropdown-item active" href="cart.html">Mi Carrito</a></li>
-            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li><a id="perfil" class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
             <li><a class="dropdown-item" id="darkMode">Modo Oscuro</a></li>
             <hr class="dropdown-divider">
             </li>
@@ -76,49 +76,62 @@
   <main>
     <!-- Boostrap perfil-->
     <div class="container">
-      <div class="col-md-6">
-        <h2 class="text-center text-body-secondary"> Perfil: </h2>
-        <hr>
-        <form>
-          <div class="row">
-            <div class="col mb-2">
-              <label for="exampleInputEmail1" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nameForm" aria-describedby="emailHelp" required>
-            </div>
-            
-            <div class="col mb-2">
-              <label for="exampleInputEmail1" class="form-label">Segundo nombre:</label>
-              <input type="text" class="form-control" id="secondNameForm" aria-describedby="emailHelp">
-            </div>  
-
-            <div class="w-100"></div>
-
-            <div class="col mb-2">
-              <label for="exampleInputPassword1" class="form-label" aria-placeholder="name" >Apellido</label>
-              <input type="password" class="form-control" id="lastNameForm" required>
-            </div>
-            
-            <div class="col mb-2">
-              <label for="exampleInputPassword1" class="form-label">Segundo apellido</label>
-              <input type="text" class="form-control" id="secondLastNameForm">
-            </div>
-            
-            <div class="w-100"></div>
-
-            <div class="col mb-2">
-              <label class="form-label" for="exampleCheck1" aria-placeholder="name">Email</label>
-              <input type="email" class="form-control" id="emailForm" required>
-            </div>
-
-            <div class="col mb-2">
-              <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Teléfono</label>
-              <input type="numb" class="form-control" id="phoneForm">
-            </div>
-            
-          </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <h2 class="text-body-secondary"> Perfil: </h2>
           <hr>
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-        </form>
+          <img id="imagePreview"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAVFBMVEWgoKD////29vadnZ2bm5v4+Pj09PT7+/umpqbx8fGjo6Onp6eYmJjDw8PS0tKvr6/p6eng4ODU1NSzs7PHx8e5ubnb29vExMTs7Ozl5eXe3t69vb0+epNyAAAIIUlEQVR4nO2di5aiMAyGaVMolwIOKqPj+7/ntkXHG8qtkXS239mzx3WcPfwmTdq0hCgKBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQGAiACCuAKx9PW4BUKIuq/Z4yBKeZIdjW5X135EJIto3GXvm0Owj4b1ILa889qi7cCz9Fgli+/NGXsfP1luNIE6HQX3WXU9+alT7vsHXT3ZSa1/uZES9Ga3PsKnF2pc8CYBqkj5D5VPygHq8g17J/DGj+p6hz/Dtx2gEGM4Qr/jxwYoQTQsx92wi8oMRomSBQMaSnLhEyPkigYxx4hLzeKFAxuJ8bRFvmZMlHsnWFvEGsSTIXNmQjaiidSKQsZaoRCgdCWSsJBltoHAmkLFibTV9iHGLwXEcCPqp2DkUyNiOnp/m0qlCSS4rqi+nAhn7orbOqB0LZKxeW9I9yk2uv2VDyojg3oSMbSkFG+F6FBqOlDJGiiCQsXRtWVfE9MraGCo6biqWLnv7ScgohC2KQEKxBhokhQ0VhWpZ8ek1CZWUiJEMO4jMaxyufB8hshJ2Vrx45oeGm4KLAls/GQ0bAppAxkgodFqfeYREvQb2iAr3FIwIbgs095Ao18zY0B4Pick34CULxloKCsX8Ld9hSGwKo6zvL3xRUAioCkl46Z+3IeK0lEikQVv/Gkisgf+DjI+3PKSyQMSqQxlo1KJyRIU09thg+RmaV0gSJnR1xqQPIudOEBcXJJYWqEtgEgtgA5rCtYVdQBuIRIYh4qyGxIzGgrNBSmmLFMlNKZ1VOKEoPJFxUm1EjGlNTCXOGFCSPpF03wGR21NtBknrSPuS0xixpuftipKTRgs2oCRnsZQ9++SkLKiBufc6cZZxnsknK35TUzj7iHCcxDGXyaNCgoeEzTbinHCjFWb6z+OZo4KcCW3G4Hy6Rh5nWmTyoJBamOkQx5hPyfzdp6U0ApP7r4bSfO0W4L1h/6X1OteMOdfB9O4n9A55GyAt1N4otNlNct7ZM/59oU0WX74C82Op3dO8xaT9BSNU/9tK3UYprXRvyfXIyUvJEs4Te70aM8rslXcv7GtrN56Yd+PYftgOQjMU9Q+t55a5EFFNTWIBRapS2EkjQ4ccrocWl9pWiZUqO6U8iU0wstpknHRfg46lZkwmsexCzi6HogZ6jpqCdtRcVVJbQWY86ZTqazZy47OP8m6GZnKg/tuMQ+2WRpVRaTxXf7QR+utKgcQ5kxtyUUAOZvRU+pq1Sp3juJViHdSYSBs0jqV12dimFRNp9Pv6Q4lVa96NZaVykaeCYD5MQTtWCrna6bCRaCc1A87aMLbwq0I9SjNpbSgv4/CskMlvc6uz+bYic1f42qJugEKl2oKpcdaTNVtiTKIFceOwdwrt+LPyzc+4VcjPCk9Cf1OFKAptQ6AmEcz4ifKoUHVsJGaJ8UItI+MXhToZaEkJPy+XznGWWy9NzOymBrDjGZRII0HsznXIbQ7TZtQvN8yGyfOQ0wqYTR169HEbQ88Tg+4jJh+a+MS+tNHMr+thbf4voNxmSc2poO5IzkVfAcW73kl9HFO6ButH7aecb0/2ROfa7wAox95owkvCI+4dAKMaRR1OnuozgKrb9wuquK2Vv/oMOuTv21femrR78LPN1z0gVF42m7sKh+Sb5pQrj93zCVCQ19tTudvtytO2zuFPqfsFLqx9IYH/HtOAddYvkp5q/6IzYJPM6y0n6ow3W9rZEURddblvRs363DqEVzXZFAmivJ5YOEw0o6ivE7xNSVEjiOLhNHQ7YYkuoofD4k1BTKR2z+cT+7IaqRGi6nlH50jJWUFtXxyoqYrhZZ9KX+yQb8hEHbF9s0Y67t+lADMvf1MMOGwJFDa0fw7UK+J2H/VNQgFUtG8HNhyPq/c0hXzU/SSH5lSAUr/zUiWi4tSM2hdv163fTKmpyezYNpVeW1RNe8wmbBavWIMTW7y7uG/JVhqOIDBvB7qnWSNziC1Oy5Z++OfNiNR05zUfPp0BhcsWguM4fHJLUeCcmB1i/zEzqs+FmHuaz5T+l7WzXsZHmmFD8ckY+gjHH4wC827DMWDfkbhSjLnlhBpvHLdhnQfmPFV9Os33U6GFVCIC8eY3q6XBZ3ASIxkLGjAc9eNT7fe4Dzdi7t0GWJSOJcL6efARt3e2ofQJXorTU8SO25G7weV5d8S+gUtw13MQtYvQElz1bScxGe3HTc5A6xLsAjdrKbzWJcuJHehTUw+KfpblQxG1R5ILFvdZwmqX4I6FWRHhqQ6uWXYnn6Duo4ZFfkpytvbIktmb84fH4DA/npLO9bds5yoUNCfcz8ydgs9uIvB5ZrYnQOw055p4lkLUHs+umdfpxYdMcWFOxiBWPRxiRhkcfDKhNuJfN+F0IwLpdW8fU9fC5JeFz0ycgHsznbmSTXJTb2akt0yqSpGtkL7jOGWJgdn8GI8JWR+1CTkeE5qBehhnDONjDcm9tDGM3m9DfRYAJqOfM6B8m89ciEdGU2+ddLSberX0vWfkQlj5GUkNI6Mp5nPUsBnVP8vDZcWVUQsML+ekF0Y9Wwilr/OnGNU/mv6O4TtGtHH3ehiOGoioD6jCpx1207n9gIkwpv+wX3XSR4brph5PSjsGp6aeB5oRocbbteGFwTWioH0EapjjUKjxeGHRkQ2tgj3bcnpm8EFmflZKbxmomnqfLAbTBepDtj/DwF0K3qfDwYTocRXqwkA1yvuEP5jyPV87GQYeIex1kaZjoFTj/aRtcKPUg1PPQwycikZ8auqnGHgspOc1DMNjHeMfiA2DXzyA+WEAAAAASUVORK5CYII="
+            alt="Imagen de perfil por defecto" width="200">
+          <form>
+            <div class="row">
+              <div class="col mb-2">
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                <input value="" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp" required>
+              </div>
+
+              <div class="col mb-2">
+                <label for="exampleInputEmail1" class="form-label">Segundo nombre</label>
+                <input value="" type="text" class="form-control" id="secondNameForm" aria-describedby="emailHelp">
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col mb-2">
+                <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Apellido</label>
+                <input value="" type="text" class="form-control" id="lastNameForm" required>
+              </div>
+
+              <div class="col mb-2">
+                <label for="exampleInputPassword1" class="form-label">Segundo apellido</label>
+                <input value="" type="text" class="form-control" id="secondLastNameForm">
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col mb-2">
+                <label class="form-label" for="exampleCheck1" aria-placeholder="name">Email</label>
+                <input id="perfilEmail" value="" type="email" class="form-control" required>
+
+              </div>
+
+              <div class="col mb-2">
+                <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Teléfono</label>
+                <input value="" type="numb" class="form-control" id="phoneForm">
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col mb-2">
+                <label for="formFile" class="form-label">Imagen de perfil</label>
+                <input class="form-control" type="file" id="formFile">
+              </div>
+
+            </div>
+            <hr>
+            <button id="submitProfile" type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+          </form>
+        </div>
       </div>
     </div>
   </main>
@@ -126,7 +139,7 @@
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
-        <a href="#">Volver arriba</a>
+        <a href="my-profile.html">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
       </p>
