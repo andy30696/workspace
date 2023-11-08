@@ -30,6 +30,7 @@ if (data) {
     const opcionMenu = document.getElementById("btnCerrarSesion");
     username.textContent = "Login";
     opcionMenu.innerHTML = "Registrarse";
+
     perfil.style.display = "none";
 }
 
