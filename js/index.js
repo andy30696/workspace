@@ -26,8 +26,6 @@ const perfil = document.getElementById('perfil');
 if (data) {
     username.textContent = data;
     perfil.style.display = "block";
-
-
 } else {
     const opcionMenu = document.getElementById("btnCerrarSesion");
     username.textContent = "Login";
