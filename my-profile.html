@@ -48,11 +48,6 @@
           <li class="nav-item">
           </li>
         </ul>
-        <!--
-          <li class="nav-item">
-            <a class="nav-link" href="login.html" id="loginIndex">Login</a>
-          </li>
-        </ul>-->
         <!-- boost de boton-->
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="loginIndex" data-bs-toggle="dropdown"
@@ -76,60 +71,60 @@
   <main>
     <!-- Boostrap perfil-->
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row col-12">
         <div class="col-md-12">
+          <img class="float-end" id="imagenPorDefecto" src="/img/perfil.png" width="100">
           <h2 class="text-body-secondary"> Perfil: </h2>
-          <img class="col mb-2 float-end" id="imagenPorDefecto" src="/img/perfil.png" width="100">
-          <hr>
-          <form>
-            <div class="row">
-              <div class="col mb-2">
-                <label for="exampleInputEmail1" class="form-label">Nombre*</label>
-                <input value="" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp" required>
-              </div>
+        </div>
+        <form>
+          <div class="row">
+            <hr>
+            <div class="col-md-6">
+              <label for="exampleInputEmail1" class="form-label">Nombre*</label>
+              <input value="" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp" required>
+            </div>
 
-              <div class="col mb-2">
-                <label for="exampleInputEmail1" class="form-label">Segundo nombre</label>
-                <input value="" type="text" class="form-control" id="secondNameForm" aria-describedby="emailHelp">
-              </div>
+            <div class="col-md-6">
+              <label for="exampleInputEmail1" class="form-label">Segundo nombre</label>
+              <input value="" type="text" class="form-control" id="secondNameForm" aria-describedby="emailHelp">
+            </div>
 
-              <div class="w-100"></div>
+            <div class="w-100"></div>
 
-              <div class="col mb-2">
-                <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Apellido*</label>
-                <input value="" type="text" class="form-control" id="lastNameForm" required>
-              </div>
+            <div class="col-md-6">
+              <label for="exampleInputpassword1" class="form-label" aria-placeholder="name">Apellido*</label>
+              <input value="" type="text" class="form-control" id="lastNameForm" required>
+            </div>
 
-              <div class="col mb-2">
-                <label for="exampleInputPassword1" class="form-label">Segundo apellido</label>
-                <input value="" type="text" class="form-control" id="secondLastNameForm">
-              </div>
+            <div class="col-md-6">
+              <label for="exampleInputPassword1" class="form-label">Segundo apellido</label>
+              <input value="" type="text" class="form-control" id="secondLastNameForm">
+            </div>
 
-              <div class="w-100"></div>
+            <div class="w-100"></div>
 
-              <div class="col mb-2">
-                <label class="form-label" for="exampleCheck1" aria-placeholder="name">Email*</label>
-                <input id="perfilEmail" value="" type="email" class="form-control" required>
-
-              </div>
-
-              <div class="col mb-2">
-                <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Teléfono</label>
-                <input value="" type="numb" class="form-control" id="phoneForm">
-              </div>
-
-              <div class="w-100"></div>
-
-              <div class="col mb-2">
-                <label for="formFile" class="form-label">Imagen de perfil</label>
-                <input class="form-control" value="" type="file" id="formFile">
-              </div>
+            <div class="col-md-6">
+              <label class="form-label" for="exampleCheck1" aria-placeholder="name">Email*</label>
+              <input id="perfilEmail" value="" type="email" class="form-control" required>
 
             </div>
-            <hr>
-            <button id="submitProfile" type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-          </form>
-        </div>
+
+            <div class="col-md-6">
+              <label for="exampleInputPassword1" class="form-label" aria-placeholder="name">Teléfono</label>
+              <input value="" type="numb" class="form-control" id="phoneForm">
+            </div>
+
+            <div class="w-100"></div>
+
+            <div class="col-md-6">
+              <label for="formFile" class="form-label">Imagen de perfil</label>
+              <input class="form-control" value="" type="file" id="formFile">
+            </div>
+
+          </div>
+          <hr>
+          <button id="submitProfile" type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+        </form>
       </div>
     </div>
   </main>
