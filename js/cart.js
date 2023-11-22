@@ -1,4 +1,5 @@
-const URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+// const URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+const URL = "/emercado-api-main/user_cart/25801.json";
 let subtotalGeneral = 0;
 
 fetch(URL)
