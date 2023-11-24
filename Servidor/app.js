@@ -1,6 +1,6 @@
 const express = require("express");
 const fs = require("fs");
-const path = require('path');
+const path = require("path");
 
 const app = express();
 const port = 3000;
@@ -22,6 +22,27 @@ const myConnection = require("express-myconnection");
 
 app.use(express.json());
 
+const verificarToken = (req, res, next) => {
+  const token = req.headers["x-access-token"];
+  if (!token) {
+    return res
+      .status(401)
+      .json({ auth: false, message: "Token no proporcionado" });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ auth: false, message: "Falló la autenticación del token" });
+    }
+
+    // Si el token es válido, se almacena el ID del usuario en el objeto de solicitud (req)
+    req.userId = decoded.id;
+    next(); // Continuar con la siguiente operación después de la verificación del token
+  });
+};
+
 app.get("/", function (req, res) {
   res.send("Hola Mundo!");
 });
@@ -30,15 +51,35 @@ app.listen(3000, function () {
   console.log("Aplicación ejemplo, escuchando el puerto 3000!");
 });
 
-app.get('/emercado-api-main/cart/:filename', (req, res) => {
+app.get("/emercado-api-main/cart/:filename", verificarToken, (req, res) => {
   const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'cart', filename);
+  const filePath = path.join(__dirname, "emercado-api-main", "cart", filename);
+
+  if (token !== previousToken) {
+    return res.status(401).json({ auth: false, message: "Token no válido" });
+  }
 
   // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
+  res.sendFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error(err);
-      res.status(404).send('Archivo no encontrado');
+      res.status(404).send("Archivo no encontrado");
+      return;
+    }
+    const jsonData = JSON.stringify(data);
+    res.json(jsonData);
+  });
+});
+
+app.get("/emercado-api-main/cats/:filename", (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, "emercado-api-main", "cats", filename);
+
+  // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
+  res.sendFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(404).send("Archivo no encontrado");
       return;
     }
     const jsonData = JSON.parse(data);
@@ -46,31 +87,20 @@ app.get('/emercado-api-main/cart/:filename', (req, res) => {
   });
 });
 
-app.get('/emercado-api-main/cats/:filename', (req, res) => {
+app.get("/emercado-api-main/cats_products/:filename", (req, res) => {
   const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'cats', filename);
+  const filePath = path.join(
+    __dirname,
+    "emercado-api-main",
+    "cats_products",
+    filename
+  );
 
   // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
+  res.sendFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error(err);
-      res.status(404).send('Archivo no encontrado');
-      return;
-    }
-    const jsonData = JSON.parse(data);
-    res.json(jsonData);
-  });
-});
-
-app.get('/emercado-api-main/cats_products/:filename', (req, res) => {
-  const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'cats_products', filename);
-
-  // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(404).send('Archivo no encontrado');
+      res.status(404).send("Archivo no encontrado");
       return;
     }
     const jsonData = JSON.stringify(data);
@@ -78,15 +108,20 @@ app.get('/emercado-api-main/cats_products/:filename', (req, res) => {
   });
 });
 
-app.get('/emercado-api-main/products/:filename', (req, res) => {
+app.get("/emercado-api-main/products/:filename", (req, res) => {
   const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'products', filename);
+  const filePath = path.join(
+    __dirname,
+    "emercado-api-main",
+    "products",
+    filename
+  );
 
   // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
+  res.sendFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error(err);
-      res.status(404).send('Archivo no encontrado');
+      res.status(404).send("Archivo no encontrado");
       return;
     }
     const jsonData = JSON.stringify(data);
@@ -94,37 +129,41 @@ app.get('/emercado-api-main/products/:filename', (req, res) => {
   });
 });
 
-app.get('/emercado-api-main/products_comments/:filename', (req, res) => {
+app.get("/emercado-api-main/products_comments/:filename", (req, res) => {
   const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'products_comments', filename);
+  const filePath = path.join(
+    __dirname,
+    "emercado-api-main",
+    "products_comments",
+    filename
+  );
 
   // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
+  res.sendFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error(err);
-      res.status(404).send('Archivo no encontrado');
+      res.status(404).send("Archivo no encontrado");
       return;
     }
     const jsonData = JSON.stringify(data);
-    if (jsonData =="") {
-      console.log('sin comentarios')
+    if (jsonData == "") {
+      console.log("sin comentarios");
       res.send("Sin comentarios");
     } else {
       res.json(jsonData);
     }
-
   });
 });
 
-app.get('/emercado-api-main/sell/:filename', (req, res) => {
+app.get("/emercado-api-main/sell/:filename", (req, res) => {
   const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'sell', filename);
+  const filePath = path.join(__dirname, "emercado-api-main", "sell", filename);
 
   // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
+  res.sendFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error(err);
-      res.status(404).send('Archivo no encontrado');
+      res.status(404).send("Archivo no encontrado");
       return;
     }
     const jsonData = JSON.stringify(data);
@@ -132,22 +171,30 @@ app.get('/emercado-api-main/sell/:filename', (req, res) => {
   });
 });
 
-app.get('/emercado-api-main/user_cart/:filename', (req, res) => {
-  const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'emercado-api-main', 'user_cart', filename);
+app.get(
+  "/emercado-api-main/user_cart/:filename",
+  verificarToken,
+  (req, res) => {
+    const filename = req.params.filename;
+    const filePath = path.join(
+      __dirname,
+      "emercado-api-main",
+      "user_cart",
+      filename
+    );
 
-  // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
-  res.sendFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(404).send('Archivo no encontrado');
-      return;
-    }
-    const jsonData = JSON.stringify(data);
-    res.json(jsonData);
-  });
-});
-
+    // Devuelve el archivo JSON si existe, de lo contrario, devuelve un error 404
+    res.sendFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error(err);
+        res.status(404).send("Archivo no encontrado");
+        return;
+      }
+      const jsonData = JSON.stringify(data);
+      res.json(jsonData);
+    });
+  }
+);
 
 // token ------------------------------------------------------------------------------------
 
@@ -158,7 +205,7 @@ app.post("/signup", (req, res, next) => {
     {
       username: username,
       email: email,
-      password: password
+      password: password,
     },
     (err, result) => {
       if (err) {
@@ -166,7 +213,7 @@ app.post("/signup", (req, res, next) => {
       } else {
         console.log("Usuario creado:\n", result);
         const userId = result.id;
-        const token = jwt.sign({ id: userId }, config.SECRET_KEY, {
+        const token = jwt.sign({ id: userId }, SECRET_KEY, {
           expiresIn: 60 * 60 * 24, // el token expirará después de 24 horas
         });
         res.status(200).json({ auth: true, token: token });
@@ -184,7 +231,7 @@ app.get("/me", (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, config.SECRET_KEY);
+    const decoded = jwt.verify(token, SECRET_KEY);
     const userId = decoded.id;
 
     User.getById(userId, (err, user) => {
@@ -205,6 +252,7 @@ app.get("/me", (req, res, next) => {
   }
 });
 
+let previusToken = "";
 app.post("/signin", (req, res, next) => {
   // Lógica de inicio de sesión
   const { email, password } = req.body;
@@ -217,18 +265,16 @@ app.post("/signin", (req, res, next) => {
         .status(401)
         .json({ auth: false, message: "Credenciales incorrectas" });
     }
+    previusToken = "";
     User.getById(email, (err, user) => {
       if (err) {
         return res.status(500).json({ error: "Error al obtener el usuario" });
       }
 
-      const userToken = jwt.sign(
-        { username: user.username },
-        config.SECRET_KEY,
-        {
-          expiresIn: 60 * 60 * 24, // el token expirará después de 24 horas
-        }
-      );
+      const userToken = jwt.sign({ username: user.username }, SECRET_KEY, {
+        expiresIn: 60 * 60 * 24, // el token expirará después de 24 horas
+      });
+      previusToken = userToken;
 
       res
         .status(200)
@@ -244,10 +290,9 @@ module.exports = ruta;
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
-  database: "workspace"
+  password: "54652162",
+  database: "workspace",
 });
-
 
 // Conexión a la base de datos
 connection.connect((err) => {
