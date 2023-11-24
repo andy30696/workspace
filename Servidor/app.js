@@ -5,6 +5,20 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+//variables de token -------------------------------------
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = "claveSecreta";
+const ruta = express.Router();
+
+//const { User, authenticateUser } = require("autenticador");
+// --------------------------------------------------------
+app.use(express.urlencoded({ extended: false }));
+// Variables autenticador ------------------------------------------
+const mysql = require("mysql");
+
+const bcrypt = require("bcryptjs"); // encripta el string pasado
+const myConnection = require("express-myconnection");
+//------------------------------------------------------------------
 
 app.use(express.json());
 
@@ -133,3 +147,171 @@ app.get('/emercado-api-main/user_cart/:filename', (req, res) => {
     res.json(jsonData);
   });
 });
+
+
+// token ------------------------------------------------------------------------------------
+
+app.post("/signup", (req, res, next) => {
+  const { username, email, password } = req.body;
+  console.log(username, email, password);
+  User.create(
+    {
+      username: username,
+      email: email,
+      password: password
+    },
+    (err, result) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        console.log("Usuario creado:\n", result);
+        const userId = result.id;
+        const token = jwt.sign({ id: userId }, config.SECRET_KEY, {
+          expiresIn: 60 * 60 * 24, // el token expirará después de 24 horas
+        });
+        res.status(200).json({ auth: true, token: token });
+      }
+    }
+  );
+});
+
+app.get("/me", (req, res, next) => {
+  const token = req.headers["x-access-token"];
+  if (!token) {
+    return res
+      .status(401)
+      .json({ auth: false, message: "No tienes un token autorizado" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, config.SECRET_KEY);
+    const userId = decoded.id;
+
+    User.getById(userId, (err, user) => {
+      if (err) {
+        console.log("Error al obtener el usuario:", err);
+        return res.status(500).json({ error: "Error al obtener el usuario" });
+      }
+      console.log("Usuario encontrado:", user);
+
+      if (!user) {
+        return res.status(404).json({ error: "Usuario no encontrado" });
+      }
+      res.status(200).json({ user: user });
+    });
+  } catch (error) {
+    console.log("Token inválido:", error);
+    return res.status(500).json({ error: "Token inválido" });
+  }
+});
+
+app.post("/signin", (req, res, next) => {
+  // Lógica de inicio de sesión
+  const { email, password } = req.body;
+  console.log(email, password);
+
+  authenticateUser(email, password, (err, token) => {
+    if (err) {
+      console.log("Error en la autenticacion: ", err);
+      return res
+        .status(401)
+        .json({ auth: false, message: "Credenciales incorrectas" });
+    }
+    User.getById(email, (err, user) => {
+      if (err) {
+        return res.status(500).json({ error: "Error al obtener el usuario" });
+      }
+
+      const userToken = jwt.sign(
+        { username: user.username },
+        config.SECRET_KEY,
+        {
+          expiresIn: 60 * 60 * 24, // el token expirará después de 24 horas
+        }
+      );
+
+      res
+        .status(200)
+        .json({ auth: true, token: userToken, message: "autorizado" });
+    });
+  });
+});
+module.exports = ruta;
+
+/////////////////////////////////      BASE DE DATOS       ///////////////////////////////////////////
+
+// Configuración de la conexión a la base de datos
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "workspace"
+});
+
+
+// Conexión a la base de datos
+connection.connect((err) => {
+  if (err) throw err;
+  console.log("Conectado a la base de datos MySQL");
+});
+
+const User = {
+  create: (userData, callback) => {
+    // ecnciptar la contraseña antes de guardarla
+    bcrypt.hash(userData.password, 10, (err, hash) => {
+      if (err) throw err;
+
+      // reemplazamos la password con la original con el hash
+      userData.password = hash;
+
+      connection.query("INSERT INTO users SET ?", userData, callback);
+    });
+  },
+  getAll: (callback) => {
+    connection.query("SELECT * FROM users", callback);
+  },
+  getById: (id, callback) => {
+    connection.query("SELECT * FROM users WHERE id = ?", [id], callback);
+  },
+  // Otros métodos para crear, actualizar o borrar usuarios según tu necesidad
+};
+const verifyPassword = (plainPassword, hashedPassword, callback) => {
+  bcrypt.compare(plainPassword, hashedPassword, (err, isMatch) => {
+    if (err) {
+      return callback(err, null);
+    }
+    callback(null, isMatch);
+  });
+};
+
+const authenticateUser = (email, password, callback) => {
+  connection.query(
+    "SELECT username, password FROM users WHERE email = ?",
+    [email],
+    (err, results) => {
+      if (err) {
+        return callback(err, null);
+      }
+
+      if (results.length === 0) {
+        return callback("Usuario no encontrado", null);
+      }
+      const { username, password: storedPassword } = results[0];
+
+      verifyPassword(password, storedPassword, (error, isMatch) => {
+        if (error) {
+          return callback(error, null);
+        }
+
+        if (!isMatch) {
+          return callback("Contraseña incorrecta", null);
+        }
+        //  generamos un token JWT después de la autenticación exitosa.
+        const token = jwt.sign({ username, email }, SECRET_KEY);
+        callback(null, token);
+      });
+    }
+  );
+};
+
+module.exports = { User, authenticateUser };
