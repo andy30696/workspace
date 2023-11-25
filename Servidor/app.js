@@ -71,6 +71,39 @@ app.get("/emercado-api-main/cart/:filename", verificarToken, (req, res) => {
   });
 });
 
+app.post("/cart", (req, res) => {
+   // ID del usuario obtenido del token
+
+  // Supongamos que los datos del carrito se envían como un arreglo de objetos en el cuerpo de la solicitud
+  const cartItems = req.body.articles; // Ajusta esto a cómo se envían los datos
+
+  if (!cartItems || !Array.isArray(cartItems)) {
+    return res.status(400).json({ message: "Los datos del carrito son inválidos" });
+  }
+
+  // Iterar sobre los ítems del carrito y guardarlos en la base de datos
+  cartItems.forEach(product => {
+    const userId = req.body.user;
+    const { id, name, count, unitCost, currency, image } = product;
+    
+    // Query para insertar el ítem en la base de datos asociándolo con el usuario
+    connection.query(
+      "INSERT INTO cart (userId, productId, name, count, unitCost, currency, image) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [userId, id, name, count, unitCost, currency, image],
+      (err, result) => {
+        if (err) {
+          console.error("Error al guardar el ítem del carrito:", err);
+        }
+        // Puedes manejar la respuesta de la inserción como lo necesites
+      }
+    );
+  });
+
+
+  res.status(200).json({message: "Ítems del carrito guardados exitosamente" });
+});
+
+
 app.get("/emercado-api-main/cats/:filename", (req, res) => {
   const filename = req.params.filename;
   const filePath = path.join(__dirname, "emercado-api-main", "cats", filename);
@@ -290,7 +323,7 @@ module.exports = ruta;
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "54652162",
+  password: "root",
   database: "workspace",
 });
 
